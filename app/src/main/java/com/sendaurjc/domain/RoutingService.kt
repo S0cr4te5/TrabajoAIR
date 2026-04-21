@@ -8,22 +8,30 @@ import java.util.*
 class RoutingService {
 
     fun findSafeRoute(origin: GeoPoint, destination: GeoPoint): List<GeoPoint> {
-        val step = 0.00005 // Aprox 5m para mayor precisión
+        val step = 0.0002 // ~20m - más rápido
         val openSet = PriorityQueue<Node>(compareBy { it.fScore })
-        val closedSet = mutableSetOf<Pair<Int, Int>>()
-        val cameFrom = mutableMapOf<Node, Node>()
+        val gScoreMap = mutableMapOf<String, Double>()
+        val closedSet = mutableSetOf<String>()
+        val nodeMap = mutableMapOf<String, Node>() // Mapa de nodos para reconstrucción
 
-        val startNode = Node(origin, 0.0, GeoUtils.distanceMeters(origin, destination))
+        val startNode = Node(origin, 0.0, GeoUtils.distanceMeters(origin, destination), null)
+        val startKey = gridKeyString(origin, step)
         openSet.add(startNode)
+        gScoreMap[startKey] = 0.0
+        nodeMap[startKey] = startNode
 
         var iterations = 0
-        val maxIterations = 8000 // Aumentado para el paso más pequeño
-        var bestNode: Node? = null
-        var minH = Double.MAX_VALUE
+        val maxIterations = 500 // Aún más reducido
+        var bestNode: Node? = startNode
+        var minH = GeoUtils.distanceMeters(origin, destination)
 
         while (openSet.isNotEmpty() && iterations < maxIterations) {
             iterations++
             val current = openSet.poll() ?: break
+            val currentKey = gridKeyString(current.point, step)
+
+            if (closedSet.contains(currentKey)) continue
+            closedSet.add(currentKey)
 
             val h = GeoUtils.distanceMeters(current.point, destination)
             if (h < minH) {
@@ -31,76 +39,86 @@ class RoutingService {
                 bestNode = current
             }
 
-            // Si estamos muy cerca del destino, terminamos
-            if (h < 15.0) {
-                return reconstructPath(cameFrom, current, origin, destination)
+            // Cercano al destino
+            if (h < 20.0) {
+                return reconstructPath(bestNode, origin, destination)
             }
 
-            closedSet.add(gridKey(current.point, step))
+            // Solo 4 direcciones
+            val neighbors = listOf(
+                GeoPoint(current.point.latitude + step, current.point.longitude),
+                GeoPoint(current.point.latitude - step, current.point.longitude),
+                GeoPoint(current.point.latitude, current.point.longitude + step),
+                GeoPoint(current.point.latitude, current.point.longitude - step)
+            )
 
-            for (dx in -1..1) {
-                for (dy in -1..1) {
-                    if (dx == 0 && dy == 0) continue
+            for (nextPoint in neighbors) {
+                val nextKey = gridKeyString(nextPoint, step)
+                if (closedSet.contains(nextKey)) continue
+                if (!isPointSafe(nextPoint)) continue
 
-                    val nextPoint = GeoPoint(
-                        current.point.latitude + dx * step,
-                        current.point.longitude + dy * step
-                    )
+                val tentativeGScore = current.gScore + GeoUtils.distanceMeters(current.point, nextPoint)
+                val previousGScore = gScoreMap[nextKey] ?: Double.MAX_VALUE
 
-                    if (closedSet.contains(gridKey(nextPoint, step))) continue
-
-                    // Verificamos el punto destino y el punto medio para evitar atravesar esquinas
-                    val midPoint = GeoUtils.interpolate(current.point, nextPoint, 0.5)
-
-                    if (MockLumenSmartDataSource.isUnsafe(nextPoint) || MockLumenSmartDataSource.isUnsafe(midPoint)) continue
-                    if (MockLumenSmartDataSource.isInsideBuilding(nextPoint) || MockLumenSmartDataSource.isInsideBuilding(midPoint)) continue
-                    if (MockLumenSmartDataSource.isInsideGreenZone(nextPoint) || MockLumenSmartDataSource.isInsideGreenZone(midPoint)) continue
-
-                    val tentativeGScore = current.gScore + GeoUtils.distanceMeters(current.point, nextPoint)
-                    val neighbor = Node(nextPoint, tentativeGScore, GeoUtils.distanceMeters(nextPoint, destination))
-
-                    val existing = openSet.find { it.gridKey(step) == neighbor.gridKey(step) }
-                    if (existing == null || tentativeGScore < existing.gScore) {
-                        cameFrom[neighbor] = current
-                        if (existing != null) openSet.remove(existing)
-                        openSet.add(neighbor)
-                    }
+                if (tentativeGScore < previousGScore) {
+                    gScoreMap[nextKey] = tentativeGScore
+                    val hScore = GeoUtils.distanceMeters(nextPoint, destination)
+                    val neighbor = Node(nextPoint, tentativeGScore, hScore, current)
+                    nodeMap[nextKey] = neighbor
+                    openSet.add(neighbor)
                 }
             }
         }
 
-        return reconstructPath(cameFrom, bestNode ?: startNode, origin, destination)
+        return reconstructPath(bestNode, origin, destination)
     }
 
-    private fun gridKey(point: GeoPoint, step: Double): Pair<Int, Int> {
-        return (point.latitude / step).toInt() to (point.longitude / step).toInt()
+    private fun isPointSafe(point: GeoPoint): Boolean {
+        return !MockLumenSmartDataSource.isUnsafe(point) &&
+               !MockLumenSmartDataSource.isInsideBuilding(point) &&
+               !MockLumenSmartDataSource.isInsideGreenZone(point)
     }
 
-    private fun reconstructPath(cameFrom: Map<Node, Node>, lastNode: Node, origin: GeoPoint, destination: GeoPoint): List<GeoPoint> {
+    private fun gridKeyString(point: GeoPoint, step: Double): String {
+        val lat = (point.latitude / step).toInt()
+        val lon = (point.longitude / step).toInt()
+        return "$lat,$lon"
+    }
+
+    private fun reconstructPath(node: Node?, origin: GeoPoint, destination: GeoPoint): List<GeoPoint> {
+        if (node == null) return listOf(origin, destination)
+
         val path = mutableListOf<GeoPoint>()
-        var curr: Node? = lastNode
-        while (curr != null) {
-            path.add(0, curr.point)
-            curr = cameFrom[curr]
+        var current: Node? = node
+        val maxSteps = 10000 // Prevenir loops infinitos
+
+        var steps = 0
+        while (current != null && steps < maxSteps) {
+            path.add(0, current.point)
+            current = current.parent
+            steps++
         }
-        
-        // ASEGURAMOS ORIGEN Y DESTINO EXACTOS
-        val finalPath = path.toMutableList()
-        if (finalPath.isNotEmpty()) {
-            finalPath[0] = origin
-            if (GeoUtils.distanceMeters(finalPath.last(), destination) < 50.0) {
-                finalPath[finalPath.lastIndex] = destination
-            } else {
-                finalPath.add(destination)
-            }
-        } else {
+
+        if (path.isEmpty()) {
             return listOf(origin, destination)
+        }
+
+        val finalPath = path.toMutableList()
+        finalPath[0] = origin
+        if (GeoUtils.distanceMeters(finalPath.last(), destination) < 50.0) {
+            finalPath[finalPath.lastIndex] = destination
+        } else {
+            finalPath.add(destination)
         }
         return finalPath
     }
 
-    private data class Node(val point: GeoPoint, val gScore: Double, val hScore: Double) {
+    private data class Node(
+        val point: GeoPoint,
+        val gScore: Double,
+        val hScore: Double,
+        val parent: Node? = null
+    ) {
         val fScore: Double get() = gScore + hScore
-        fun gridKey(step: Double) = (point.latitude / step).toInt() to (point.longitude / step).toInt()
     }
 }

@@ -20,6 +20,11 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -28,6 +33,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.OutlinedTextField
+import android.util.Patterns
+import java.util.UUID
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,14 +52,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.compose.runtime.LaunchedEffect
+import com.sendaurjc.data.repository.EmergencyContact
+import com.sendaurjc.data.repository.EmergencyContactRepository
 import com.sendaurjc.service.AlertForegroundService
 import kotlinx.coroutines.launch
-
-data class EmergencyContact(
-    val id: String,
-    val name: String,
-    val email: String,
-)
 
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,25 +64,14 @@ data class EmergencyContact(
 fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageIncidentsClick: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    var selectedEmergencyContact by remember { mutableStateOf<String?>(null) }
+    val repository = remember { EmergencyContactRepository(context) }
+    var emergencyContacts by remember { mutableStateOf<List<EmergencyContact>>(emptyList()) }
+    var showAddContactDialog by remember { mutableStateOf(false) }
+    var contactToEdit by remember { mutableStateOf<EmergencyContact?>(null) }
 
-    val emergencyContacts = listOf(
-        EmergencyContact(
-            id = "contact1",
-            name = "María López García",
-            email = "m.lopez.2023@alumnos.urjc.es"
-        ),
-        EmergencyContact(
-            id = "contact2",
-            name = "Carlos Rodríguez Martín",
-            email = "j.rodriguez.2015@urjc.es"
-        ),
-        EmergencyContact(
-            id = "contact3",
-            name = "Ana Fernández Ruiz",
-            email = "a.fernandez.2021@alumnos.urjc.es"
-        )
-    )
+    LaunchedEffect(Unit) {
+        emergencyContacts = repository.getContacts()
+    }
 
     Column(
         modifier = Modifier
@@ -204,6 +199,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             )
 
             emergencyContacts.forEach { contact ->
+                var showMenu by remember { mutableStateOf(false) }
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -214,23 +210,59 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                             .fillMaxWidth()
                             .padding(16.dp)
                     ) {
-                        Text(
-                            text = contact.name,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = contact.name,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 20.sp
+                            )
+                            Box {
+                                IconButton(onClick = { showMenu = true }) {
+                                    Icon(Icons.Default.MoreVert, contentDescription = "Opciones")
+                                }
+                                DropdownMenu(
+                                    expanded = showMenu,
+                                    onDismissRequest = { showMenu = false }
+                                ) {
+                                    DropdownMenuItem(
+                                        text = { Text("Editar") },
+                                        onClick = {
+                                            showMenu = false
+                                            contactToEdit = contact
+                                            showAddContactDialog = true
+                                        }
+                                    )
+                                    DropdownMenuItem(
+                                        text = { Text("Borrar") },
+                                        onClick = {
+                                            showMenu = false
+                                            repository.deleteContact(contact.id)
+                                            emergencyContacts = repository.getContacts()
+                                            Toast.makeText(context, "Contacto eliminado", Toast.LENGTH_SHORT).show()
+                                        }
+                                    )
+                                }
+                            }
+                        }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "📧 ${contact.email}",
-                            style = MaterialTheme.typography.bodySmall
+                            style = MaterialTheme.typography.bodySmall,
+                            fontSize = 15.sp
                         )
                         Spacer(modifier = Modifier.height(12.dp))
-                        val isSelected = selectedEmergencyContact == contact.id
+                        val isSelected = contact.isSelected
                         Button(
                             onClick = {
-                                selectedEmergencyContact = if (isSelected) null else contact.id
+                                repository.updateContactSelection(contact.id, !isSelected)
+                                emergencyContacts = repository.getContacts()
                                 val message = if (isSelected) {
-                                    "Contacto de emergencia removido"
+                                    "Contacto de emergencia eliminado"
                                 } else {
                                     "${contact.name} establecido como contacto de emergencia"
                                 }
@@ -251,8 +283,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             }
             Button(
                 onClick = {
-                    onReportClick()
-                    onClose()
+                    showAddContactDialog = true
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF1FA240)
@@ -262,6 +293,75 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                     .height(60.dp)
             ) {
                 Text("➕ Añadir Contacto de Emergencia", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            }
+
+            if (showAddContactDialog) {
+                var newName by remember { mutableStateOf(contactToEdit?.name ?: "") }
+                var newEmail by remember { mutableStateOf(contactToEdit?.email ?: "") }
+                var emailError by remember { mutableStateOf(false) }
+
+                AlertDialog(
+                    onDismissRequest = { 
+                        showAddContactDialog = false
+                        contactToEdit = null
+                    },
+                    title = { Text(if (contactToEdit == null) "Nuevo Contacto de Emergencia" else "Editar Contacto") },
+                    text = {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            OutlinedTextField(
+                                value = newName,
+                                onValueChange = { newName = it },
+                                label = { Text("Nombre") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            OutlinedTextField(
+                                value = newEmail,
+                                onValueChange = {
+                                    newEmail = it
+                                    emailError = !Patterns.EMAIL_ADDRESS.matcher(it).matches()
+                                },
+                                label = { Text("Email") },
+                                isError = emailError,
+                                supportingText = {
+                                    if (emailError) {
+                                        Text("Email no válido", color = MaterialTheme.colorScheme.error)
+                                    }
+                                },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                if (newName.isNotBlank() && !emailError && newEmail.isNotBlank()) {
+                                    val contact = EmergencyContact(
+                                        id = contactToEdit?.id ?: UUID.randomUUID().toString(),
+                                        name = newName,
+                                        email = newEmail,
+                                        isSelected = contactToEdit?.isSelected ?: false
+                                    )
+                                    repository.addContact(contact)
+                                    emergencyContacts = repository.getContacts()
+                                    showAddContactDialog = false
+                                    contactToEdit = null
+                                } else {
+                                    Toast.makeText(context, "Por favor, rellena los campos correctamente", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        ) {
+                            Text("Guardar")
+                        }
+                    },
+                    dismissButton = {
+                        Button(onClick = { 
+                            showAddContactDialog = false
+                            contactToEdit = null
+                        }) {
+                            Text("Cancelar")
+                        }
+                    }
+                )
             }
 
 

@@ -1,15 +1,19 @@
 package com.sendaurjc.ui.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.sendaurjc.SendaApplication
+import com.sendaurjc.data.local.CampusFeature
 import com.sendaurjc.data.local.IncidentEntity
 import com.sendaurjc.data.local.Sitio
 import com.sendaurjc.data.mock.MockLumenSmartDataSource
+import com.sendaurjc.data.network.OverpassService
+import com.sendaurjc.data.repository.CampusFeatureRepository
+import com.sendaurjc.data.repository.RutaPredefinidaRepository
+import com.sendaurjc.data.sync.MapDataSyncManager
 import com.sendaurjc.domain.RouteRepository
 import com.sendaurjc.util.GeoUtils
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +26,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.osmdroid.util.GeoPoint
-import java.io.File
 
 class MainViewModel(
     private val app: SendaApplication,
@@ -31,9 +34,10 @@ class MainViewModel(
 
     private val dao = app.database.incidentDao()
     private val gson = Gson()
-    private val sitiosFile = File(app.filesDir, "sitios.json")
+    private val featureRepository = CampusFeatureRepository(app)
+    private val rutaManualRepository = RutaPredefinidaRepository(app)
+    private val syncManager = MapDataSyncManager(OverpassService())
 
-    //private val _origin = MutableStateFlow(GeoPoint(40.334583, -3.876450))
     private val _origin = MutableStateFlow(GeoPoint(40.334583, -3.876450))
     val origin: StateFlow<GeoPoint> = _origin.asStateFlow()
 
@@ -48,6 +52,9 @@ class MainViewModel(
 
     private val _sitios = MutableStateFlow<List<Sitio>>(emptyList())
     val sitios: StateFlow<List<Sitio>> = _sitios.asStateFlow()
+
+    private val _campusFeatures = MutableStateFlow<List<CampusFeature>>(emptyList())
+    val campusFeatures: StateFlow<List<CampusFeature>> = _campusFeatures.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
@@ -64,20 +71,28 @@ class MainViewModel(
 
     init {
         loadSitios()
+        syncAndLoadFeatures()
+    }
+
+    private fun syncAndLoadFeatures() {
+        viewModelScope.launch {
+            syncManager.syncMapData(
+                MockLumenSmartDataSource.CAMPUS_CENTER_LAT,
+                MockLumenSmartDataSource.CAMPUS_CENTER_LON
+            )
+            val features = withContext(Dispatchers.IO) {
+                featureRepository.loadCampusFeatures()
+            }
+            _campusFeatures.value = features
+            MockLumenSmartDataSource.setFeatures(features)
+        }
     }
 
     private fun loadSitios() {
         viewModelScope.launch {
             val list = withContext(Dispatchers.IO) {
                 try {
-                    // Para que los cambios en assets/sitios.json se vean inmediatamente:
                     val jsonFromAssets = app.assets.open("sitios.json").bufferedReader().use { it.readText() }
-                    
-                    // Si el archivo local no existe, lo creamos. Si existe pero es distinto, lo actualizamos.
-                    if (!sitiosFile.exists() || sitiosFile.readText() != jsonFromAssets) {
-                        sitiosFile.writeText(jsonFromAssets)
-                    }
-                    
                     val type = object : TypeToken<List<Sitio>>() {}.type
                     gson.fromJson<List<Sitio>>(jsonFromAssets, type) ?: emptyList<Sitio>()
                 } catch (e: Exception) {
@@ -92,34 +107,32 @@ class MainViewModel(
         _searchQuery.value = query
     }
 
-    fun addSitio(sitio: Sitio) {
-        viewModelScope.launch {
-            val updatedList = _sitios.value + sitio
-            _sitios.value = updatedList
-            saveSitios(updatedList)
-        }
-    }
-
-    private suspend fun saveSitios(list: List<Sitio>) {
-        withContext(Dispatchers.IO) {
-            try {
-                val json = gson.toJson(list)
-                sitiosFile.writeText(json)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun updateOrigin(point: GeoPoint) {
-        _origin.value = point
-    }
-
     fun onDestinationSelected(point: GeoPoint) {
         _destination.value = point
+        val sitioCercano = _sitios.value.find { 
+            GeoUtils.distanceMeters(it.coordenadas, point) < 20.0 
+        }
+        calculateRoute(point, sitioCercano?.nombre)
+    }
+
+    private fun calculateRoute(point: GeoPoint, nombreSitio: String?) {
         viewModelScope.launch {
-            val route = routeRepository.requestWalkingRoute(_origin.value, point)
-            segmentAndClassify(route)
+            try {
+                val rutaManual = nombreSitio?.let { rutaManualRepository.getRutaParaDestino(it) }
+                
+                val route = if (rutaManual != null) {
+                    rutaManual
+                } else {
+                    withContext(Dispatchers.Default) {
+                        routeRepository.requestWalkingRoute(_origin.value, point)
+                    }
+                }
+                segmentAndClassify(route)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _secureSegments.value = emptyList()
+                _unsafeSegments.value = emptyList()
+            }
         }
     }
 
@@ -151,23 +164,14 @@ class MainViewModel(
         val unsafe = mutableListOf<List<GeoPoint>>()
 
         for (i in 0 until route.lastIndex) {
-            val sStart = route[i]
-            val sEnd = route[i + 1]
+            val a = route[i]
+            val b = route[i + 1]
+            val sampleMid = GeoUtils.interpolate(a, b, 0.5)
             
-            val distance = GeoUtils.distanceMeters(sStart, sEnd)
-            val pieces = if (distance > 30) (distance / 20.0).toInt().coerceAtLeast(1) else 1
-            
-            for (p in 0 until pieces) {
-                // Forzamos el inicio y fin exactos de cada segmento para evitar derivas
-                val a = if (p == 0) sStart else GeoUtils.interpolate(sStart, sEnd, p.toDouble() / pieces)
-                val b = if (p == pieces - 1) sEnd else GeoUtils.interpolate(sStart, sEnd, (p + 1).toDouble() / pieces)
-                
-                val sampleMid = GeoUtils.interpolate(a, b, 0.5)
-                if (MockLumenSmartDataSource.isUnsafe(sampleMid)) {
-                    unsafe += listOf(a, b)
-                } else {
-                    secure += listOf(a, b)
-                }
+            if (MockLumenSmartDataSource.isUnsafe(sampleMid)) {
+                unsafe += listOf(a, b)
+            } else {
+                secure += listOf(a, b)
             }
         }
         _secureSegments.value = secure

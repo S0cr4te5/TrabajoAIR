@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "type": "building", "name": "Biblioteca" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87615, 40.33740],
+          [-3.87505, 40.33740],
+          [-3.87505, 40.33680],
+          [-3.87615, 40.33680],
+          [-3.87615, 40.33740]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "type": "building", "name": "Aulario 1" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87670, 40.33620],
+          [-3.87580, 40.33620],
+          [-3.87580, 40.33540],
+          [-3.87670, 40.33540],
+          [-3.87670, 40.33620]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "type": "building", "name": "Aulario 2" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87750, 40.33670],
+          [-3.87680, 40.33670],
+          [-3.87680, 40.33610],
+          [-3.87750, 40.33610],
+          [-3.87750, 40.33670]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "type": "building", "name": "Aulario 3" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87810, 40.33550],
+          [-3.87730, 40.33550],
+          [-3.87730, 40.33490],
+          [-3.87810, 40.33490],
+          [-3.87810, 40.33550]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "type": "green_zone", "name": "Parque Central" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87570, 40.33660],
+          [-3.87430, 40.33660],
+          [-3.87430, 40.33540],
+          [-3.87570, 40.33540],
+          [-3.87570, 40.33660]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "type": "green_zone", "name": "Zona Norte" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-3.87750, 40.33780],
+          [-3.87400, 40.33780],
+          [-3.87400, 40.33750],
+          [-3.87750, 40.33750],
+          [-3.87750, 40.33780]
+        ]]
+      }
+    }
+  ]
+}
