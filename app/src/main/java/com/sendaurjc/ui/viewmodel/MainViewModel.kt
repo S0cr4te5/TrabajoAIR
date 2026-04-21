@@ -183,6 +183,7 @@ class MainViewModel(
     fun clearRoutes() {
         _routeOptions.value = emptyList()
         _selectedRoute.value = null
+        _destination.value = null
         _secureSegments.value = emptyList()
         _unsafeSegments.value = emptyList()
     }
