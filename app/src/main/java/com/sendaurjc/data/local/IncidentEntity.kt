@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class IncidentEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val type: String,
+    val description: String,
     val lat: Double,
     val lon: Double,
     val timestamp: Long = System.currentTimeMillis()

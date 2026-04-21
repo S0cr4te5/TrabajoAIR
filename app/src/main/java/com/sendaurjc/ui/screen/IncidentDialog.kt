@@ -1,5 +1,9 @@
 package com.sendaurjc.ui.screen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.ui.unit.dp
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
@@ -20,11 +24,17 @@ import org.json.JSONObject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IncidentDialog(onDismiss: () -> Unit, onReport: (String) -> Unit) {
+fun IncidentDialog(
+    initialType: String = "",
+    initialDescription: String = "",
+    onDismiss: () -> Unit,
+    onReport: (String, String) -> Unit
+) {
     val context = LocalContext.current
     var options by remember { mutableStateOf(listOf("Cargando...")) }
     var expanded by remember { mutableStateOf(false) }
-    var selected by remember { mutableStateOf("") }
+    var selectedType by remember { mutableStateOf(initialType) }
+    var description by remember { mutableStateOf(initialDescription) }
 
     LaunchedEffect(Unit) {
         val jsonString = context.assets.open("incident_types.json").bufferedReader().use { it.readText() }
@@ -35,42 +45,56 @@ fun IncidentDialog(onDismiss: () -> Unit, onReport: (String) -> Unit) {
             typesList.add(jsonArray.getString(i))
         }
         options = typesList
-        if (typesList.isNotEmpty()) {
-            selected = typesList.first()
+        if (selectedType.isEmpty() && typesList.isNotEmpty()) {
+            selectedType = typesList.first()
         }
     }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Reportar incidencia") },
+        title = { Text(if (initialType.isEmpty()) "Reportar incidencia" else "Editar incidencia") },
         text = {
-            if (selected.isNotEmpty()) {
-                ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
-                    OutlinedTextField(
-                        value = selected,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Tipo") },
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                        modifier = Modifier.menuAnchor()
-                    )
-                    ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                        options.forEach { item ->
-                            DropdownMenuItem(text = { Text(item) }, onClick = {
-                                selected = item
-                                expanded = false
-                            })
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (options.isNotEmpty() && options.first() != "Cargando...") {
+                    ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
+                        OutlinedTextField(
+                            value = selectedType,
+                            onValueChange = {},
+                            readOnly = true,
+                            label = { Text("Tipo") },
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                        )
+                        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                            options.forEach { item ->
+                                DropdownMenuItem(text = { Text(item) }, onClick = {
+                                    selectedType = item
+                                    expanded = false
+                                })
+                            }
                         }
                     }
+                } else {
+                    Text("Cargando tipos de incidencia...")
                 }
-            } else {
-                Text("Cargando tipos de incidencia...")
+
+                OutlinedTextField(
+                    value = description,
+                    onValueChange = { description = it },
+                    label = { Text("Descripción") },
+                    modifier = Modifier.fillMaxWidth(),
+                    minLines = 3
+                )
             }
         },
         confirmButton = {
             Button(
-                onClick = { onReport(selected) },
-                enabled = selected.isNotEmpty() && selected != "Cargando..."
+                onClick = { onReport(selectedType, description) },
+                enabled = selectedType.isNotEmpty() && 
+                         selectedType != "Cargando..." && 
+                         description.isNotBlank()
             ) {
                 Text("Guardar")
             }

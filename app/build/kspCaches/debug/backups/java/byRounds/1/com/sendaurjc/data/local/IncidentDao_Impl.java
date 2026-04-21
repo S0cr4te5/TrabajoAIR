@@ -3,6 +3,7 @@ package com.sendaurjc.data.local;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.room.CoroutinesRoom;
+import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
@@ -32,6 +33,8 @@ public final class IncidentDao_Impl implements IncidentDao {
 
   private final EntityInsertionAdapter<IncidentEntity> __insertionAdapterOfIncidentEntity;
 
+  private final EntityDeletionOrUpdateAdapter<IncidentEntity> __updateAdapterOfIncidentEntity;
+
   private final SharedSQLiteStatement __preparedStmtOfDeleteById;
 
   private final SharedSQLiteStatement __preparedStmtOfUpdateType;
@@ -42,7 +45,7 @@ public final class IncidentDao_Impl implements IncidentDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `incidents` (`id`,`type`,`lat`,`lon`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?)";
+        return "INSERT OR ABORT INTO `incidents` (`id`,`type`,`description`,`lat`,`lon`,`timestamp`) VALUES (nullif(?, 0),?,?,?,?,?)";
       }
 
       @Override
@@ -50,9 +53,29 @@ public final class IncidentDao_Impl implements IncidentDao {
           @NonNull final IncidentEntity entity) {
         statement.bindLong(1, entity.getId());
         statement.bindString(2, entity.getType());
-        statement.bindDouble(3, entity.getLat());
-        statement.bindDouble(4, entity.getLon());
-        statement.bindLong(5, entity.getTimestamp());
+        statement.bindString(3, entity.getDescription());
+        statement.bindDouble(4, entity.getLat());
+        statement.bindDouble(5, entity.getLon());
+        statement.bindLong(6, entity.getTimestamp());
+      }
+    };
+    this.__updateAdapterOfIncidentEntity = new EntityDeletionOrUpdateAdapter<IncidentEntity>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "UPDATE OR ABORT `incidents` SET `id` = ?,`type` = ?,`description` = ?,`lat` = ?,`lon` = ?,`timestamp` = ? WHERE `id` = ?";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          @NonNull final IncidentEntity entity) {
+        statement.bindLong(1, entity.getId());
+        statement.bindString(2, entity.getType());
+        statement.bindString(3, entity.getDescription());
+        statement.bindDouble(4, entity.getLat());
+        statement.bindDouble(5, entity.getLon());
+        statement.bindLong(6, entity.getTimestamp());
+        statement.bindLong(7, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteById = new SharedSQLiteStatement(__db) {
@@ -83,6 +106,25 @@ public final class IncidentDao_Impl implements IncidentDao {
         __db.beginTransaction();
         try {
           __insertionAdapterOfIncidentEntity.insert(incident);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object update(final IncidentEntity incident,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __updateAdapterOfIncidentEntity.handle(incident);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {
@@ -157,6 +199,7 @@ public final class IncidentDao_Impl implements IncidentDao {
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
           final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
+          final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfLat = CursorUtil.getColumnIndexOrThrow(_cursor, "lat");
           final int _cursorIndexOfLon = CursorUtil.getColumnIndexOrThrow(_cursor, "lon");
           final int _cursorIndexOfTimestamp = CursorUtil.getColumnIndexOrThrow(_cursor, "timestamp");
@@ -167,13 +210,15 @@ public final class IncidentDao_Impl implements IncidentDao {
             _tmpId = _cursor.getLong(_cursorIndexOfId);
             final String _tmpType;
             _tmpType = _cursor.getString(_cursorIndexOfType);
+            final String _tmpDescription;
+            _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
             final double _tmpLat;
             _tmpLat = _cursor.getDouble(_cursorIndexOfLat);
             final double _tmpLon;
             _tmpLon = _cursor.getDouble(_cursorIndexOfLon);
             final long _tmpTimestamp;
             _tmpTimestamp = _cursor.getLong(_cursorIndexOfTimestamp);
-            _item = new IncidentEntity(_tmpId,_tmpType,_tmpLat,_tmpLon,_tmpTimestamp);
+            _item = new IncidentEntity(_tmpId,_tmpType,_tmpDescription,_tmpLat,_tmpLon,_tmpTimestamp);
             _result.add(_item);
           }
           return _result;

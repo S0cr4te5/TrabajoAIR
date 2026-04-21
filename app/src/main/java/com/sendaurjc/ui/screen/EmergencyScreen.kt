@@ -113,11 +113,11 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                 textAlign = TextAlign.Start
             )
 
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(
                     onClick = {
@@ -130,10 +130,26 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                         containerColor = Color(0xFFD32F2F)
                     ),
                     modifier = Modifier
-                        .weight(1f)
+                        .fillMaxWidth()
                         .height(60.dp)
                 ) {
-                    Text("🚨 Activar Modo Alerta", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    Text("🚨 Activar Modo Alerta", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                }
+                Button(
+                    onClick = {
+                        scope.launch {
+                            startAlertService(context)
+                            Toast.makeText(context, "🚨 Modo Alerta Activado", Toast.LENGTH_LONG).show()
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFD32F2F)
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                ) {
+                    Text("🚨 Prueba de Alerta", fontSize = 14.sp, fontWeight = FontWeight.Bold)
                 }
             }
 

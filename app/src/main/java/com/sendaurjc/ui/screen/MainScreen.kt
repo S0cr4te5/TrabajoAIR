@@ -6,8 +6,10 @@ import android.os.Build
 import android.view.View
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -15,6 +17,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Flag
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.graphics.toArgb
 import com.sendaurjc.data.local.IncidentEntity
 import com.sendaurjc.data.local.Sitio
 import com.sendaurjc.data.mock.MockLumenSmartDataSource
@@ -41,6 +45,8 @@ import org.osmdroid.views.overlay.*
 @Composable
 fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
 
+    val routeOptions by viewModel.routeOptions.collectAsState()
+    val selectedRoute by viewModel.selectedRoute.collectAsState()
     val secureSegments by viewModel.secureSegments.collectAsState()
     val unsafeSegments by viewModel.unsafeSegments.collectAsState()
     val incidents by viewModel.incidents.collectAsState()
@@ -49,6 +55,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    var showBottomSheet by remember { mutableStateOf(false) }
 
     var reportDialogOpen by remember { mutableStateOf(false) }
     var emergencyScreenOpen by remember { mutableStateOf(false) }
@@ -57,6 +64,12 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
     var searchActive by remember { mutableStateOf(false) }
 
     val mapViewRef = remember { mutableStateOf<MapView?>(null) }
+
+    LaunchedEffect(routeOptions) {
+        if (routeOptions.isNotEmpty()) {
+            showBottomSheet = true
+        }
+    }
 
     val launcher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -94,8 +107,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                 SendaMap(
                     origin = origin,
                     destination = destination,
-                    secureSegments = secureSegments,
-                    unsafeSegments = unsafeSegments,
+                    routeOptions = if (selectedRoute != null) listOf(selectedRoute!!) else routeOptions,
                     incidents = incidents,
                     onMapLongPress = { viewModel.onDestinationSelected(it) },
                     mapViewRef = mapViewRef
@@ -104,13 +116,16 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .padding(bottom = if (showBottomSheet && routeOptions.isNotEmpty()) 200.dp else 0.dp),
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.End
                 ) {
                     FloatingActionButton(
                         onClick = {
                             reportDialogOpen = true
+                            showBottomSheet = false
+                            if (selectedRoute == null) viewModel.clearRoutes()
                         },
                         containerColor = Color(0xFFD32F2F),
 
@@ -122,6 +137,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                     FloatingActionButton(
                         onClick = {
                             mapViewRef.value?.controller?.setCenter(origin)
+                            mapViewRef.value?.controller?.setZoom(19.0)
                         },
                         containerColor = Color(0xFF757575),
 
@@ -146,7 +162,13 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                         onQueryChange = { viewModel.onSearchQueryChange(it) },
                         onSearch = { searchActive = false },
                         active = searchActive,
-                        onActiveChange = { searchActive = it },
+                        onActiveChange = { 
+                            searchActive = it 
+                            if (it) {
+                                showBottomSheet = false
+                                if (selectedRoute == null) viewModel.clearRoutes()
+                            }
+                        },
                         placeholder = { Text("Buscar destino...") },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                         modifier = Modifier.fillMaxWidth()
@@ -171,12 +193,94 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                         horizontalArrangement = Arrangement.Start
                     ) {
                         FloatingActionButton(
-                            onClick = { emergencyScreenOpen = true },
+                            onClick = { 
+                                emergencyScreenOpen = true 
+                                showBottomSheet = false
+                                if (selectedRoute == null) viewModel.clearRoutes()
+                            },
                             containerColor = Color(0xFFD32F2F),
                             shape = CircleShape,
                             contentColor = Color.White
                         ) {
                             Icon(Icons.Filled.AccountCircle, contentDescription = "Emergencia")
+                        }
+                    }
+                }
+
+                AnimatedVisibility(
+                    visible = showBottomSheet && routeOptions.isNotEmpty(),
+                    enter = slideInVertically(initialOffsetY = { it }),
+                    exit = slideOutVertically(targetOffsetY = { it }),
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                ) {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+                        shadowElevation = 16.dp,
+                        color = MaterialTheme.colorScheme.surface
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    "Rutas disponibles",
+                                    style = MaterialTheme.typography.titleLarge
+                                )
+                                IconButton(onClick = {
+                                    showBottomSheet = false
+                                    if (selectedRoute == null) {
+                                        viewModel.clearRoutes()
+                                    }
+                                }) {
+                                    Icon(Icons.Default.Close, contentDescription = "Cerrar")
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(8.dp))
+                            routeOptions.forEach { option ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable { 
+                                            viewModel.selectRoute(option)
+                                            showBottomSheet = false
+                                        }
+                                        .padding(vertical = 12.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Surface(
+                                            modifier = Modifier.size(24.dp),
+                                            color = option.color,
+                                            shape = CircleShape
+                                        ) {}
+                                        Spacer(modifier = Modifier.width(16.dp))
+                                        Text(
+                                            text = option.name,
+                                            style = MaterialTheme.typography.bodyLarge
+                                        )
+                                    }
+                                    val safetyColor = when {
+                                        option.safetyIndex > 8.5 -> Color(0xFF4CAF50)
+                                        option.safetyIndex >= 7.5 -> Color(0xFFFF9800)
+                                        else -> Color(0xFFF44336)
+                                    }
+                                    Text(
+                                        text = "Seguridad: ${option.safetyIndex}",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = safetyColor
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -186,8 +290,8 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
         if (reportDialogOpen) {
             IncidentDialog(
                 onDismiss = { reportDialogOpen = false },
-                onReport = { type ->
-                    viewModel.reportIncident(type, origin)
+                onReport = { type, description ->
+                    viewModel.reportIncident(type, description, origin)
                     scope.launch {
                         snackbarHostState.showSnackbar("Incidencia guardada")
                     }
@@ -202,8 +306,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
 private fun SendaMap(
     origin: GeoPoint,
     destination: GeoPoint?,
-    secureSegments: List<List<GeoPoint>>,
-    unsafeSegments: List<List<GeoPoint>>,
+    routeOptions: List<com.sendaurjc.ui.viewmodel.RouteOption>,
     incidents: List<IncidentEntity>,
     onMapLongPress: (GeoPoint) -> Unit,
     mapViewRef: MutableState<MapView?> = remember { mutableStateOf(null) }
@@ -282,22 +385,12 @@ private fun SendaMap(
                 )
             }
 
-            secureSegments.forEach { seg ->
+            routeOptions.forEach { option ->
                 map.overlays.add(
                     Polyline().apply {
-                        setPoints(seg)
-                        color = android.graphics.Color.GREEN
-                        width = 8f
-                    }
-                )
-            }
-
-            unsafeSegments.forEach { seg ->
-                map.overlays.add(
-                    Polyline().apply {
-                        setPoints(seg)
-                        color = android.graphics.Color.RED
-                        width = 8f
+                        setPoints(option.points)
+                        color = option.color.toArgb()
+                        width = 12f
                     }
                 )
             }

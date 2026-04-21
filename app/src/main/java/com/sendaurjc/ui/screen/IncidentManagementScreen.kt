@@ -34,6 +34,10 @@ import androidx.compose.ui.unit.dp
 import com.sendaurjc.data.local.IncidentEntity
 import com.sendaurjc.ui.viewmodel.MainViewModel
 
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
@@ -71,10 +75,12 @@ fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
 
     if (editingIncident != null) {
         IncidentDialog(
+            initialType = editingIncident?.type ?: "",
+            initialDescription = editingIncident?.description ?: "",
             onDismiss = { editingIncident = null },
-            onReport = { newType ->
+            onReport = { newType, newDescription ->
                 editingIncident?.let {
-                    viewModel.updateIncident(it, newType)
+                    viewModel.updateIncident(it, newType, newDescription)
                 }
                 editingIncident = null
             }
@@ -100,6 +106,15 @@ fun IncidentItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = incident.type, style = MaterialTheme.typography.titleMedium)
+                Text(text = incident.description, style = MaterialTheme.typography.bodyMedium)
+                Spacer(modifier = Modifier.height(4.dp))
+                val date = Date(incident.timestamp)
+                val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                Text(
+                    text = "Creado: ${format.format(date)}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.secondary
+                )
                 Text(
                     text = "Lat: ${String.format("%.4f", incident.lat)}, Lon: ${String.format("%.4f", incident.lon)}",
                     style = MaterialTheme.typography.bodySmall

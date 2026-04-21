@@ -10,14 +10,14 @@ import java.io.InputStreamReader
 class RutaPredefinidaRepository(private val context: Context) {
     private val gson = Gson()
 
-    fun getRutaParaDestino(nombreDestino: String): List<GeoPoint>? {
+    fun getRutasParaDestino(nombreDestino: String): List<Pair<List<GeoPoint>, Double>>? {
         return try {
             val inputStream = context.assets.open("rutas_predefinidas.json")
             val reader = InputStreamReader(inputStream)
             val type = object : TypeToken<List<RutaPredefinida>>() {}.type
             val rutas: List<RutaPredefinida> = gson.fromJson(reader, type)
             
-            rutas.find { it.destino.equals(nombreDestino, ignoreCase = true) }?.toGeoPoints()
+            rutas.find { it.destino.equals(nombreDestino, ignoreCase = true) }?.toRouteDataList()
         } catch (e: Exception) {
             e.printStackTrace()
             null

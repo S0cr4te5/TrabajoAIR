@@ -44,6 +44,12 @@ class MainViewModel(
     private val _destination = MutableStateFlow<GeoPoint?>(null)
     val destination: StateFlow<GeoPoint?> = _destination.asStateFlow()
 
+    private val _routeOptions = MutableStateFlow<List<RouteOption>>(emptyList())
+    val routeOptions: StateFlow<List<RouteOption>> = _routeOptions.asStateFlow()
+
+    private val _selectedRoute = MutableStateFlow<RouteOption?>(null)
+    val selectedRoute: StateFlow<RouteOption?> = _selectedRoute.asStateFlow()
+
     private val _secureSegments = MutableStateFlow<List<List<GeoPoint>>>(emptyList())
     val secureSegments: StateFlow<List<List<GeoPoint>>> = _secureSegments.asStateFlow()
 
@@ -109,36 +115,81 @@ class MainViewModel(
 
     fun onDestinationSelected(point: GeoPoint) {
         _destination.value = point
+        _selectedRoute.value = null
         val sitioCercano = _sitios.value.find { 
             GeoUtils.distanceMeters(it.coordenadas, point) < 20.0 
         }
-        calculateRoute(point, sitioCercano?.nombre)
+        calculateRoutes(point, sitioCercano?.nombre)
     }
 
-    private fun calculateRoute(point: GeoPoint, nombreSitio: String?) {
+    private fun calculateRoutes(point: GeoPoint, nombreSitio: String?) {
         viewModelScope.launch {
             try {
-                val rutaManual = nombreSitio?.let { rutaManualRepository.getRutaParaDestino(it) }
+                val rutasManuales = nombreSitio?.let { rutaManualRepository.getRutasParaDestino(it) }
                 
-                val route = if (rutaManual != null) {
-                    rutaManual
+                val rawRoutes: List<Pair<List<GeoPoint>, Double>> = if (!rutasManuales.isNullOrEmpty()) {
+                    rutasManuales
                 } else {
-                    withContext(Dispatchers.Default) {
+                    val fallback = withContext(Dispatchers.Default) {
                         routeRepository.requestWalkingRoute(_origin.value, point)
                     }
+                    listOf(fallback to 0.0)
                 }
-                segmentAndClassify(route)
+
+                val colors = listOf(
+                    androidx.compose.ui.graphics.Color(0xFF4CAF50), // Verde
+                    androidx.compose.ui.graphics.Color(0xFF2196F3), // Azul
+                    androidx.compose.ui.graphics.Color(0xFFFF9800)  // Naranja
+                )
+
+                val options = rawRoutes.mapIndexed { index, pair ->
+                    val points = pair.first
+                    val modificador = pair.second
+                    val randomSafety = 7.4 + Math.random() * (9.9 - 7.4)
+                    val finalSafety = Math.max(0.0, Math.round((randomSafety - modificador) * 10.0) / 10.0)
+                    
+                    RouteOption(
+                        id = index,
+                        name = "Ruta ${index + 1}",
+                        points = points,
+                        safetyIndex = finalSafety,
+                        color = if (index < colors.size) colors[index] else androidx.compose.ui.graphics.Color.Gray
+                    )
+                }.sortedByDescending { it.safetyIndex }
+                .mapIndexed { index, option ->
+                    option.copy(name = "Ruta ${index + 1}")
+                }
+
+                _routeOptions.value = options
+                
+                if (options.isNotEmpty()) {
+                    segmentAndClassify(options.first().points)
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
+                _routeOptions.value = emptyList()
                 _secureSegments.value = emptyList()
                 _unsafeSegments.value = emptyList()
             }
         }
     }
 
-    fun reportIncident(type: String, location: GeoPoint) {
+    fun selectRoute(option: RouteOption) {
+        _selectedRoute.value = option.copy(color = androidx.compose.ui.graphics.Color(0xFF4CAF50))
+        _routeOptions.value = emptyList()
+        segmentAndClassify(option.points)
+    }
+
+    fun clearRoutes() {
+        _routeOptions.value = emptyList()
+        _selectedRoute.value = null
+        _secureSegments.value = emptyList()
+        _unsafeSegments.value = emptyList()
+    }
+
+    fun reportIncident(type: String, description: String, location: GeoPoint) {
         viewModelScope.launch {
-            dao.insert(IncidentEntity(type = type, lat = location.latitude, lon = location.longitude))
+            dao.insert(IncidentEntity(type = type, description = description, lat = location.latitude, lon = location.longitude))
         }
     }
 
@@ -148,9 +199,9 @@ class MainViewModel(
         }
     }
 
-    fun updateIncident(incident: IncidentEntity, newType: String) {
+    fun updateIncident(incident: IncidentEntity, newType: String, newDescription: String) {
         viewModelScope.launch {
-            dao.updateType(incident.id, newType)
+            dao.update(incident.copy(type = newType, description = newDescription))
         }
     }
 
@@ -185,3 +236,11 @@ class MainViewModel(
         }
     }
 }
+
+data class RouteOption(
+    val id: Int,
+    val name: String,
+    val points: List<GeoPoint>,
+    val safetyIndex: Double,
+    val color: androidx.compose.ui.graphics.Color
+)

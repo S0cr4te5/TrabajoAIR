@@ -2,6 +2,7 @@ package com.sendaurjc.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Update
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
@@ -9,6 +10,9 @@ import kotlinx.coroutines.flow.Flow
 interface IncidentDao {
     @Insert
     suspend fun insert(incident: IncidentEntity)
+
+    @Update
+    suspend fun update(incident: IncidentEntity)
 
     @Query("SELECT * FROM incidents ORDER BY timestamp DESC")
     fun observeAll(): Flow<List<IncidentEntity>>
