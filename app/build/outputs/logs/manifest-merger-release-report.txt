@@ -1,0 +1,478 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:1:1-35:12
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:1:1-35:12
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:1:1-35:12
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:1:1-35:12
+MERGED from [com.google.android.material:material:1.12.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/8f7945930e52e868ea3b48609535f28f/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7aa1d56a31033d4a48828afaf22cdd41/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/defa3f9ad71ea56392b16f331723ea66/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/03d0185d5e28968f2510fd90c76a5316/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6f824fd765f5b821f3acc535f2d5e429/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ec53cb0c76bd4e30bc2b554ba3b88e4e/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.5.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c107700000dd5e0354cc94e52734c7d3/transformed/transition-1.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/2f91f78152cd81c9766d1ed7c34b9958/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ea3039818aacc6fb399665ba297d1729/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ad9784b1622299c38cb2734b465b10cf/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7462a982b9f6bd69938fc7a2136e6c45/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/66ac93e292934f12bf7cdbb4ba770564/transformed/navigation-common-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/cc9312e5f4ed4a70fda3f70fd53622fa/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/290ff81ef213f1dd5a694aa49ba9dd32/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/642f0c8688c11160039fe4cb0e80e11f/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5f0871067a3112a4ff652c748298661d/transformed/navigation-compose-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/BlackMouth/.gradle/caches/9.0.0/transforms/83025ce948804f55305a50c34fd6a442/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.compose.material3:material3-android:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7b7bc91e39f5d5e7226f476e90cfe0fb/transformed/material3-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c43aa20560f891bdfc309fd9f1fbd5ab/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c83cb1fbee2809df79292616aef8b16c/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b0b96a62d9a563b543284065e13088c5/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bcb783607c0f10487b3c9e73d4909cad/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5d31948d6e3aabda02ff3ef3789464af/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4f66a106196fb1765281a6dbadb726cb/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c825cfc6820bac6b5a5f65aa812189da/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7575de2fd54ba95c52ba41015a2a36dd/transformed/animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/214e192d78c7de801d37080b167fc5d8/transformed/animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e94c95b7063178aa986f237c87302dd3/transformed/foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a478564a95ce75de98e31fe41d4ead4a/transformed/foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9de46f4cbf58bc8bcecf0be96c726f29/transformed/ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a62bda780bc1a9538fc62c75e9faddbf/transformed/ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3c2825ef71d5c288870b2a6ff5561053/transformed/ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e5f5c9d0e7543b65519d0f010bba30f1/transformed/ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/285f459d03cb5efb6f96c8bd55b3af3e/transformed/ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-text-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f98f47f6e83bac463b88a370204b9ddd/transformed/ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d3ed7553dce25d4ac4789a448fba474b/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6d34e5b070bdda5f08f0301977f1cef1/transformed/lifecycle-livedata-core-ktx-2.8.4/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/88ca3ca85f9bbc142f4e01aefbaf0e71/transformed/lifecycle-livedata-2.8.4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/36bcdda6aa53e7537177116bd065d0db/transformed/lifecycle-livedata-core-2.8.4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3fbb87adb566763fd4bff6fc0f6b4dc3/transformed/lifecycle-viewmodel-2.8.4/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/14d1768ba3be347d86ba4078e66764c0/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/dfc8080b1bc8eab5c0981f5919e6c04b/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/384a28ce4e07d78e224bbc4bdc866dce/transformed/lifecycle-viewmodel-savedstate-2.8.4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ebf1c073e23fc542f630afa7b80a797b/transformed/lifecycle-viewmodel-ktx-2.8.4/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0508db407f5e338bc5ebc944f04d5880/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9e6817aa307ce7f32928038b97e84725/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/46ed40b6dc3449b99ea14f044998eb4f/transformed/ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-ktx:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/833667d811b33cd1a86200f2be6a91da/transformed/activity-ktx-1.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d22979f13f5484850a5b701d0ed83064/transformed/activity-compose-1.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a6ea8160ae0aef5894eb7c2504648cf1/transformed/activity-1.9.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f9fc1b7360a740a9d92e28d151e35d8f/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/395340382483c721b8d2e672c79f10fb/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4ef88c191760ab2446275a9ed9e22dd9/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.autofill:autofill:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f3af518e1ba41a0e33bb38f47fb5f401/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0946902c3fd0fad480b3b93354e666e4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e78cd2925345c58c058c83dbcaf41bea/transformed/core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ca70908f25cebe93977257c86e075bfb/transformed/room-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7d754c9672cffc9d1c1ecf8a9d1d4983/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/20eacd3f2604b8721c910ecae42f2c14/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/503d4e1aa305b5dbe9b7c9dd2f734de8/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ab836d8d0a220d4bf1e20c0a30201c25/transformed/sqlite-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/47e8a87bbd801f7ae6e7e113270b5bae/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/456d2d532b173c36740c63c5758b5390/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ae6b03c3252596e30870112205a0df2a/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b91740df22664de60ee630eaac8d2de9/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7006dda567e84e37e9089232523ff1ee/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bb8d9d46290d107f2ab0535d0e785236/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a938d83b108052cfe9ae6fcb28900f70/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9288b1c971991f07275d4eefad310d8f/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/978ea44da358a7d217cf652810ab7884/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f65c5259e69b1e4a7627b897b31247ef/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:2:5-28
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:6:5-81
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:6:22-78
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:7:5-77
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:7:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:8:5-77
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:8:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_LOCATION
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:9:5-86
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:9:22-83
+application
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:11:5-34:19
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:11:5-34:19
+MERGED from [com.google.android.material:material:1.12.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/8f7945930e52e868ea3b48609535f28f/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/8f7945930e52e868ea3b48609535f28f/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7aa1d56a31033d4a48828afaf22cdd41/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7aa1d56a31033d4a48828afaf22cdd41/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7006dda567e84e37e9089232523ff1ee/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7006dda567e84e37e9089232523ff1ee/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:17:9-35
+	android:label
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:15:9-34
+	android:roundIcon
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:16:9-63
+	android:icon
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:14:9-58
+	android:allowBackup
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:13:9-35
+	android:theme
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:18:9-47
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:12:9-41
+activity#com.sendaurjc.MainActivity
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:20:9-27:20
+	android:exported
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:22:13-36
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:21:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:23:13-26:29
+action#android.intent.action.MAIN
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:24:17-69
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:24:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:25:17-77
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:25:27-74
+service#com.sendaurjc.service.AlertForegroundService
+ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:29:9-33:56
+	android:enabled
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:32:13-37
+	android:foregroundServiceType
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:33:13-53
+	android:name
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:30:13-59
+uses-sdk
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.12.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/8f7945930e52e868ea3b48609535f28f/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/8f7945930e52e868ea3b48609535f28f/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7aa1d56a31033d4a48828afaf22cdd41/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7aa1d56a31033d4a48828afaf22cdd41/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/defa3f9ad71ea56392b16f331723ea66/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/defa3f9ad71ea56392b16f331723ea66/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/03d0185d5e28968f2510fd90c76a5316/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/03d0185d5e28968f2510fd90c76a5316/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6f824fd765f5b821f3acc535f2d5e429/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6f824fd765f5b821f3acc535f2d5e429/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ec53cb0c76bd4e30bc2b554ba3b88e4e/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ec53cb0c76bd4e30bc2b554ba3b88e4e/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.5.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c107700000dd5e0354cc94e52734c7d3/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c107700000dd5e0354cc94e52734c7d3/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/2f91f78152cd81c9766d1ed7c34b9958/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/2f91f78152cd81c9766d1ed7c34b9958/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ea3039818aacc6fb399665ba297d1729/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ea3039818aacc6fb399665ba297d1729/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ad9784b1622299c38cb2734b465b10cf/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ad9784b1622299c38cb2734b465b10cf/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7462a982b9f6bd69938fc7a2136e6c45/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7462a982b9f6bd69938fc7a2136e6c45/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/66ac93e292934f12bf7cdbb4ba770564/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/66ac93e292934f12bf7cdbb4ba770564/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/cc9312e5f4ed4a70fda3f70fd53622fa/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/cc9312e5f4ed4a70fda3f70fd53622fa/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/290ff81ef213f1dd5a694aa49ba9dd32/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/290ff81ef213f1dd5a694aa49ba9dd32/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/642f0c8688c11160039fe4cb0e80e11f/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/642f0c8688c11160039fe4cb0e80e11f/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5f0871067a3112a4ff652c748298661d/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5f0871067a3112a4ff652c748298661d/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.3.6] /home/BlackMouth/.gradle/caches/9.0.0/transforms/83025ce948804f55305a50c34fd6a442/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/BlackMouth/.gradle/caches/9.0.0/transforms/83025ce948804f55305a50c34fd6a442/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.compose.material3:material3-android:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7b7bc91e39f5d5e7226f476e90cfe0fb/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7b7bc91e39f5d5e7226f476e90cfe0fb/transformed/material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c43aa20560f891bdfc309fd9f1fbd5ab/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c43aa20560f891bdfc309fd9f1fbd5ab/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c83cb1fbee2809df79292616aef8b16c/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c83cb1fbee2809df79292616aef8b16c/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b0b96a62d9a563b543284065e13088c5/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b0b96a62d9a563b543284065e13088c5/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bcb783607c0f10487b3c9e73d4909cad/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bcb783607c0f10487b3c9e73d4909cad/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5d31948d6e3aabda02ff3ef3789464af/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/5d31948d6e3aabda02ff3ef3789464af/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4f66a106196fb1765281a6dbadb726cb/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4f66a106196fb1765281a6dbadb726cb/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c825cfc6820bac6b5a5f65aa812189da/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/c825cfc6820bac6b5a5f65aa812189da/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7575de2fd54ba95c52ba41015a2a36dd/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7575de2fd54ba95c52ba41015a2a36dd/transformed/animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/214e192d78c7de801d37080b167fc5d8/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/214e192d78c7de801d37080b167fc5d8/transformed/animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e94c95b7063178aa986f237c87302dd3/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e94c95b7063178aa986f237c87302dd3/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a478564a95ce75de98e31fe41d4ead4a/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a478564a95ce75de98e31fe41d4ead4a/transformed/foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9de46f4cbf58bc8bcecf0be96c726f29/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9de46f4cbf58bc8bcecf0be96c726f29/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a62bda780bc1a9538fc62c75e9faddbf/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a62bda780bc1a9538fc62c75e9faddbf/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3c2825ef71d5c288870b2a6ff5561053/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3c2825ef71d5c288870b2a6ff5561053/transformed/ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e5f5c9d0e7543b65519d0f010bba30f1/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e5f5c9d0e7543b65519d0f010bba30f1/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/285f459d03cb5efb6f96c8bd55b3af3e/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/285f459d03cb5efb6f96c8bd55b3af3e/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f98f47f6e83bac463b88a370204b9ddd/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f98f47f6e83bac463b88a370204b9ddd/transformed/ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d3ed7553dce25d4ac4789a448fba474b/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d3ed7553dce25d4ac4789a448fba474b/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6d34e5b070bdda5f08f0301977f1cef1/transformed/lifecycle-livedata-core-ktx-2.8.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/6d34e5b070bdda5f08f0301977f1cef1/transformed/lifecycle-livedata-core-ktx-2.8.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/88ca3ca85f9bbc142f4e01aefbaf0e71/transformed/lifecycle-livedata-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/88ca3ca85f9bbc142f4e01aefbaf0e71/transformed/lifecycle-livedata-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/36bcdda6aa53e7537177116bd065d0db/transformed/lifecycle-livedata-core-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/36bcdda6aa53e7537177116bd065d0db/transformed/lifecycle-livedata-core-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3fbb87adb566763fd4bff6fc0f6b4dc3/transformed/lifecycle-viewmodel-2.8.4/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3fbb87adb566763fd4bff6fc0f6b4dc3/transformed/lifecycle-viewmodel-2.8.4/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/14d1768ba3be347d86ba4078e66764c0/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/14d1768ba3be347d86ba4078e66764c0/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/dfc8080b1bc8eab5c0981f5919e6c04b/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/dfc8080b1bc8eab5c0981f5919e6c04b/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/384a28ce4e07d78e224bbc4bdc866dce/transformed/lifecycle-viewmodel-savedstate-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/384a28ce4e07d78e224bbc4bdc866dce/transformed/lifecycle-viewmodel-savedstate-2.8.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ebf1c073e23fc542f630afa7b80a797b/transformed/lifecycle-viewmodel-ktx-2.8.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ebf1c073e23fc542f630afa7b80a797b/transformed/lifecycle-viewmodel-ktx-2.8.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0508db407f5e338bc5ebc944f04d5880/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0508db407f5e338bc5ebc944f04d5880/transformed/lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9e6817aa307ce7f32928038b97e84725/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9e6817aa307ce7f32928038b97e84725/transformed/lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/46ed40b6dc3449b99ea14f044998eb4f/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/46ed40b6dc3449b99ea14f044998eb4f/transformed/ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/833667d811b33cd1a86200f2be6a91da/transformed/activity-ktx-1.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/833667d811b33cd1a86200f2be6a91da/transformed/activity-ktx-1.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d22979f13f5484850a5b701d0ed83064/transformed/activity-compose-1.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/d22979f13f5484850a5b701d0ed83064/transformed/activity-compose-1.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a6ea8160ae0aef5894eb7c2504648cf1/transformed/activity-1.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.9.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a6ea8160ae0aef5894eb7c2504648cf1/transformed/activity-1.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f9fc1b7360a740a9d92e28d151e35d8f/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f9fc1b7360a740a9d92e28d151e35d8f/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/395340382483c721b8d2e672c79f10fb/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/395340382483c721b8d2e672c79f10fb/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4ef88c191760ab2446275a9ed9e22dd9/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/4ef88c191760ab2446275a9ed9e22dd9/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f3af518e1ba41a0e33bb38f47fb5f401/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f3af518e1ba41a0e33bb38f47fb5f401/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0946902c3fd0fad480b3b93354e666e4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/0946902c3fd0fad480b3b93354e666e4/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e78cd2925345c58c058c83dbcaf41bea/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/e78cd2925345c58c058c83dbcaf41bea/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ca70908f25cebe93977257c86e075bfb/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ca70908f25cebe93977257c86e075bfb/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7d754c9672cffc9d1c1ecf8a9d1d4983/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7d754c9672cffc9d1c1ecf8a9d1d4983/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/20eacd3f2604b8721c910ecae42f2c14/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.8] /home/BlackMouth/.gradle/caches/9.0.0/transforms/20eacd3f2604b8721c910ecae42f2c14/transformed/runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/503d4e1aa305b5dbe9b7c9dd2f734de8/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/503d4e1aa305b5dbe9b7c9dd2f734de8/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ab836d8d0a220d4bf1e20c0a30201c25/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ab836d8d0a220d4bf1e20c0a30201c25/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/47e8a87bbd801f7ae6e7e113270b5bae/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/47e8a87bbd801f7ae6e7e113270b5bae/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/456d2d532b173c36740c63c5758b5390/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/456d2d532b173c36740c63c5758b5390/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ae6b03c3252596e30870112205a0df2a/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/ae6b03c3252596e30870112205a0df2a/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b91740df22664de60ee630eaac8d2de9/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/b91740df22664de60ee630eaac8d2de9/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7006dda567e84e37e9089232523ff1ee/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7006dda567e84e37e9089232523ff1ee/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bb8d9d46290d107f2ab0535d0e785236/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/bb8d9d46290d107f2ab0535d0e785236/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a938d83b108052cfe9ae6fcb28900f70/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/a938d83b108052cfe9ae6fcb28900f70/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9288b1c971991f07275d4eefad310d8f/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/9288b1c971991f07275d4eefad310d8f/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/978ea44da358a7d217cf652810ab7884/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/978ea44da358a7d217cf652810ab7884/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f65c5259e69b1e4a7627b897b31247ef/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f65c5259e69b1e4a7627b897b31247ef/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:5:5-7:41
+MERGED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:5:5-7:41
+	android:targetSdkVersion
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/04c59eaaa2870ed1f94348535d693050/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7738b1f31940e8d031c3515b64f2fbf1/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.4] /home/BlackMouth/.gradle/caches/9.0.0/transforms/abb7204554ba857adba6695f395c015e/transformed/lifecycle-process-2.8.4/AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+permission#com.sendaurjc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+uses-permission#com.sendaurjc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/38a853dc1ea797306df01e9df65651a7/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/3d3c2b5b2742672bbd217114c7fc893e/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+supports-screens
+ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:9:5-12:40
+	android:largeScreens
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:11:9-36
+	android:normalScreens
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:12:9-37
+	android:anyDensity
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:10:9-34
+uses-feature#android.hardware.location.network
+ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:14:5-16:36
+	android:required
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:16:9-33
+	android:name
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:15:9-57
+uses-feature#android.hardware.location.gps
+ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:17:5-19:36
+	android:required
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:19:9-33
+	android:name
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:18:9-53
+uses-feature#android.hardware.telephony
+ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:20:5-22:36
+	android:required
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:22:9-33
+	android:name
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:21:9-50
+uses-feature#android.hardware.wifi
+ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:23:5-25:36
+	android:required
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:25:9-33
+	android:name
+		ADDED from [org.osmdroid:osmdroid-android:6.1.20] /home/BlackMouth/.gradle/caches/9.0.0/transforms/f8d52b31ae3e40c789883bd6097ea016/transformed/osmdroid-android-6.1.20/AndroidManifest.xml:24:9-45

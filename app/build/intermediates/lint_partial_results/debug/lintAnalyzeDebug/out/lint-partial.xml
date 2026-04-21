@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.5.2" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.sendaurjc.MainActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="NotificationPermission">
+        <entry
+            name="source"
+            boolean="true"/>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.string.app_name"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="2"
+            column="13"
+            startOffset="24"
+            endLine="2"
+            endColumn="28"
+            endOffset="39"/>
+        <entry
+            name="model"
+            string="drawable[ic_destination(U),ic_location(U)],string[app_name(D)],style[Theme_SendaURJC(U),Theme_Material3_DayNight_NoActionBar(R)],xml[backup_rules(D),data_extraction_rules(D)];3^4;;;"/>
+        <location id="R.xml.backup_rules"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/xml/backup_rules.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="2"
+            endColumn="24"
+            endOffset="62"/>
+        <location id="R.xml.data_extraction_rules"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/xml/data_extraction_rules.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="2"
+            endColumn="26"
+            endOffset="64"/>
+    </map>
+
+</incidents>

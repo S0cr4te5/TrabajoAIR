@@ -1,0 +1,98 @@
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/java/com/sendaurjc/ui/screen/IncidentManagementScreen.kt:104: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+                    text = "Lat: ${String.format("%.4f", incident.lat)}, Lon: ${String.format("%.4f", incident.lon)}",
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/java/com/sendaurjc/ui/screen/IncidentManagementScreen.kt:104: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+                    text = "Lat: ${String.format("%.4f", incident.lat)}, Lon: ${String.format("%.4f", incident.lon)}",
+                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DefaultLocale":
+   Calling String#toLowerCase() or #toUpperCase() without specifying an
+   explicit locale is a common source of bugs. The reason for that is that
+   those methods will use the current locale on the user's device, and even
+   though the code appears to work correctly when you are developing the app,
+   it will fail in some locales. For example, in the Turkish locale, the
+   uppercase replacement for i is not I.
+
+   If you want the methods to just perform ASCII replacement, for example to
+   convert an enum name, call String#toUpperCase(Locale.ROOT) instead. If you
+   really want to use the current locale, call
+   String#toUpperCase(Locale.getDefault()) instead.
+
+   https://developer.android.com/reference/java/util/Locale.html#default_locale
+
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:59: Warning: A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.18.0 [GradleDependency]
+    implementation("androidx.core:core-ktx:1.13.1")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:60: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.4 is available: 2.10.0 [GradleDependency]
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:61: Warning: A newer version of androidx.activity:activity-compose than 1.9.1 is available: 1.13.0 [GradleDependency]
+    implementation("androidx.activity:activity-compose:1.9.1")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:66: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.13.0 [GradleDependency]
+    implementation("com.google.android.material:material:1.12.0")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:67: Warning: A newer version of androidx.navigation:navigation-compose than 2.7.7 is available: 2.9.7 [GradleDependency]
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:68: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.4 is available: 2.10.0 [GradleDependency]
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:76: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.4 [GradleDependency]
+    implementation("androidx.room:room-runtime:2.6.1")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:77: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.4 [GradleDependency]
+    implementation("androidx.room:room-ktx:2.6.1")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/build.gradle.kts:78: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.4 [GradleDependency]
+    ksp("androidx.room:room-compiler:2.6.1")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/java/com/sendaurjc/service/AlertForegroundService.kt:149: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/res/values/themes.xml:4: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+                                                  ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/res/xml/backup_rules.xml:2: Warning: The resource R.xml.backup_rules appears to be unused [UnusedResources]
+<full-backup-content />
+~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/res/xml/data_extraction_rules.xml:2: Warning: The resource R.xml.data_extraction_rules appears to be unused [UnusedResources]
+<data-extraction-rules />
+~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/res/values/strings.xml:2: Warning: The resource R.string.app_name appears to be unused [UnusedResources]
+    <string name="app_name">SendaURJC</string>
+            ~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+0 errors, 16 warnings

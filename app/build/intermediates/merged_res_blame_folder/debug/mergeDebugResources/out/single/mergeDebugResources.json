@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.sendaurjc.app-debug-70:/xml_backup_rules.xml.flat",
+        "source": "com.sendaurjc.app-main-72:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/drawable_ic_location.xml.flat",
+        "source": "com.sendaurjc.app-main-72:/drawable/ic_location.xml"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/drawable_ic_destination.xml.flat",
+        "source": "com.sendaurjc.app-main-72:/drawable/ic_destination.xml"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/xml_data_extraction_rules.xml.flat",
+        "source": "com.sendaurjc.app-main-72:/xml/data_extraction_rules.xml"
+    }
+]
