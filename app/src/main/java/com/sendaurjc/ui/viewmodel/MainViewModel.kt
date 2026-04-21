@@ -65,11 +65,18 @@ class MainViewModel(
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
+    private val _destinosConRuta = MutableStateFlow<Set<String>>(emptySet())
+    val destinosConRuta: StateFlow<Set<String>> = _destinosConRuta.asStateFlow()
+
     val filteredSitios: StateFlow<List<Sitio>> = combine(_sitios, _searchQuery) { sitios, query ->
         if (query.isEmpty()) {
-            sitios
+            sitios.sortedBy { it.nombre }
         } else {
             sitios.filter { it.nombre.contains(query, ignoreCase = true) }
+                .sortedWith(compareBy<Sitio> {
+                    // Primero los que empiezan por la consulta (mayor relevancia)
+                    !it.nombre.startsWith(query, ignoreCase = true)
+                }.thenBy { it.nombre }) // Luego por orden alfabético
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
@@ -78,6 +85,7 @@ class MainViewModel(
     init {
         loadSitios()
         syncAndLoadFeatures()
+        _destinosConRuta.value = rutaManualRepository.getDestinosConRuta()
     }
 
     private fun syncAndLoadFeatures() {
@@ -130,10 +138,7 @@ class MainViewModel(
                 val rawRoutes: List<Pair<List<GeoPoint>, Double>> = if (!rutasManuales.isNullOrEmpty()) {
                     rutasManuales
                 } else {
-                    val fallback = withContext(Dispatchers.Default) {
-                        routeRepository.requestWalkingRoute(_origin.value, point)
-                    }
-                    listOf(fallback to 0.0)
+                    emptyList()
                 }
 
                 val colors = listOf(

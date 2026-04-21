@@ -52,6 +52,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
     val incidents by viewModel.incidents.collectAsState()
     val origin by viewModel.origin.collectAsState()
     val destination by viewModel.destination.collectAsState()
+    val destinosConRuta by viewModel.destinosConRuta.collectAsState()
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -64,10 +65,12 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
     var searchActive by remember { mutableStateOf(false) }
 
     val mapViewRef = remember { mutableStateOf<MapView?>(null) }
+    var destinationWithoutRoute by remember { mutableStateOf(false) }
 
     LaunchedEffect(routeOptions) {
         if (routeOptions.isNotEmpty()) {
             showBottomSheet = true
+            destinationWithoutRoute = false
         }
     }
 
@@ -117,7 +120,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(16.dp)
-                        .padding(bottom = if (showBottomSheet && routeOptions.isNotEmpty()) 200.dp else 0.dp),
+                        .padding(bottom = if (showBottomSheet && (routeOptions.isNotEmpty() || destinationWithoutRoute)) 200.dp else 0.dp),
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.End
                 ) {
@@ -166,6 +169,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                             searchActive = it 
                             if (it) {
                                 showBottomSheet = false
+                                destinationWithoutRoute = false
                                 if (selectedRoute == null) viewModel.clearRoutes()
                             }
                         },
@@ -174,14 +178,34 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Column(modifier = Modifier.fillMaxWidth()) {
-                            filteredSitios.forEach { sitio ->
+                            val filteredDestinosConRuta = filteredSitios.filter { destinosConRuta.contains(it.nombre.lowercase()) }
+                            
+                            if (searchQuery.isNotEmpty() && filteredDestinosConRuta.isEmpty() && filteredSitios.isNotEmpty()) {
                                 ListItem(
-                                    headlineContent = { Text(sitio.nombre) },
+                                    headlineContent = {
+                                        Text(
+                                            "No existen rutas o no son seguras",
+                                            color = Color.Red,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                    },
+                                    leadingContent = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color.Red) }
+                                )
+                            }
+
+                            filteredSitios.forEach { sitio ->
+                                val hasPredefinedRoute = destinosConRuta.contains(sitio.nombre.lowercase())
+                                ListItem(
+                                    headlineContent = { Text(text = sitio.nombre) },
                                     leadingContent = { Icon(Icons.Default.LocationOn, contentDescription = null) },
                                     modifier = Modifier.clickable {
                                         viewModel.onDestinationSelected(sitio.coordenadas)
                                         searchActive = false
                                         viewModel.onSearchQueryChange("")
+                                        if (!hasPredefinedRoute) {
+                                            destinationWithoutRoute = true
+                                            showBottomSheet = true
+                                        }
                                     }
                                 )
                             }
@@ -208,7 +232,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                 }
 
                 AnimatedVisibility(
-                    visible = showBottomSheet && routeOptions.isNotEmpty(),
+                    visible = showBottomSheet && (routeOptions.isNotEmpty() || destinationWithoutRoute),
                     enter = slideInVertically(initialOffsetY = { it }),
                     exit = slideOutVertically(targetOffsetY = { it }),
                     modifier = Modifier.align(Alignment.BottomCenter)
@@ -232,11 +256,12 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    "Rutas disponibles",
+                                    if (destinationWithoutRoute) "Información" else "Rutas disponibles",
                                     style = MaterialTheme.typography.titleLarge
                                 )
                                 IconButton(onClick = {
                                     showBottomSheet = false
+                                    destinationWithoutRoute = false
                                     if (selectedRoute == null) {
                                         viewModel.clearRoutes()
                                     }
@@ -245,40 +270,64 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
-                            routeOptions.forEach { option ->
+                            
+                            if (destinationWithoutRoute) {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .clickable { 
-                                            viewModel.selectRoute(option)
-                                            showBottomSheet = false
-                                        }
-                                        .padding(vertical = 12.dp),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.SpaceBetween
+                                        .padding(vertical = 24.dp),
+                                    horizontalArrangement = Arrangement.Center,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Surface(
-                                            modifier = Modifier.size(24.dp),
-                                            color = option.color,
-                                            shape = CircleShape
-                                        ) {}
-                                        Spacer(modifier = Modifier.width(16.dp))
+                                    Icon(
+                                        Icons.Default.Warning,
+                                        contentDescription = null,
+                                        tint = Color.Red,
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(12.dp))
+                                    Text(
+                                        "No existen rutas o no son seguras",
+                                        color = Color.Red,
+                                        style = MaterialTheme.typography.bodyLarge
+                                    )
+                                }
+                            } else {
+                                routeOptions.forEach { option ->
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clickable { 
+                                                viewModel.selectRoute(option)
+                                                showBottomSheet = false
+                                            }
+                                            .padding(vertical = 12.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Surface(
+                                                modifier = Modifier.size(24.dp),
+                                                color = option.color,
+                                                shape = CircleShape
+                                            ) {}
+                                            Spacer(modifier = Modifier.width(16.dp))
+                                            Text(
+                                                text = option.name,
+                                                style = MaterialTheme.typography.bodyLarge
+                                            )
+                                        }
+                                        val safetyColor = when {
+                                            option.safetyIndex > 8.5 -> Color(0xFF4CAF50)
+                                            option.safetyIndex >= 7.5 -> Color(0xFFFF9800)
+                                            else -> Color(0xFFF44336)
+                                        }
                                         Text(
-                                            text = option.name,
-                                            style = MaterialTheme.typography.bodyLarge
+                                            text = "Seguridad: ${option.safetyIndex}",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = safetyColor
                                         )
                                     }
-                                    val safetyColor = when {
-                                        option.safetyIndex > 8.5 -> Color(0xFF4CAF50)
-                                        option.safetyIndex >= 7.5 -> Color(0xFFFF9800)
-                                        else -> Color(0xFFF44336)
-                                    }
-                                    Text(
-                                        text = "Seguridad: ${option.safetyIndex}",
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = safetyColor
-                                    )
                                 }
                             }
                         }

@@ -51,7 +51,7 @@
           {"lat": 40.336152, "lon": -3.876590},
           {"lat": 40.335802, "lon": -3.876332}
         ],
-        "modificador_indice": 0.3
+        "modificador_indice": -0.1
       },
       {
         "puntos": [
