@@ -2,6 +2,9 @@ R_DEF: Internal format may change without notice
 local
 drawable ic_destination
 drawable ic_location
+drawable ic_senda_urjc
+drawable icon_senda_urjc
+mipmap ic_launcher
 string app_name
 style Theme.SendaURJC
 xml backup_rules

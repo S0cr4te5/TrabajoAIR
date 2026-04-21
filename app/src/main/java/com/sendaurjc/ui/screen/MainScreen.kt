@@ -86,6 +86,8 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
         launcher.launch(needed.toTypedArray())
     }
 
+    val isDarkMode by viewModel.isDarkMode.collectAsState()
+
     if (emergencyScreenOpen) {
         EmergencyScreen(
             onClose = { emergencyScreenOpen = false },
@@ -93,7 +95,8 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
             onManageIncidentsClick = {
                 emergencyScreenOpen = false
                 onManageIncidents()
-            }
+            },
+            viewModel = viewModel
         )
     } else {
         Scaffold(
@@ -113,7 +116,8 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                     routeOptions = if (selectedRoute != null) listOf(selectedRoute!!) else routeOptions,
                     incidents = incidents,
                     onMapLongPress = { viewModel.onDestinationSelected(it) },
-                    mapViewRef = mapViewRef
+                    mapViewRef = mapViewRef,
+                    isDarkMode = isDarkMode
                 )
 
                 Column(
@@ -358,10 +362,19 @@ private fun SendaMap(
     routeOptions: List<com.sendaurjc.ui.viewmodel.RouteOption>,
     incidents: List<IncidentEntity>,
     onMapLongPress: (GeoPoint) -> Unit,
-    mapViewRef: MutableState<MapView?> = remember { mutableStateOf(null) }
+    mapViewRef: MutableState<MapView?> = remember { mutableStateOf(null) },
+    isDarkMode: Boolean = false
 ) {
 
     val context = LocalContext.current
+    val inverseMatrix = remember {
+        android.graphics.ColorMatrix(floatArrayOf(
+            -1.0f, 0f, 0f, 0f, 255f,
+            0f, -1.0f, 0f, 0f, 255f,
+            0f, 0f, -1.0f, 0f, 255f,
+            0f, 0f, 0f, 1.0f, 0f
+        ))
+    }
 
     val mapView = remember {
         MapView(context).apply {
@@ -375,6 +388,14 @@ private fun SendaMap(
                     MockLumenSmartDataSource.CAMPUS_CENTER_LON
                 )
             )
+        }
+    }
+
+    LaunchedEffect(isDarkMode) {
+        if (isDarkMode) {
+            mapView.overlayManager.tilesOverlay.setColorFilter(android.graphics.ColorMatrixColorFilter(inverseMatrix))
+        } else {
+            mapView.overlayManager.tilesOverlay.setColorFilter(null)
         }
     }
 

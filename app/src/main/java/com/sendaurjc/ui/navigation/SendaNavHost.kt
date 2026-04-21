@@ -14,10 +14,9 @@ import com.sendaurjc.ui.viewmodel.LoginViewModel
 import com.sendaurjc.ui.viewmodel.MainViewModel
 
 @Composable
-fun SendaNavHost(app: SendaApplication) {
+fun SendaNavHost(app: SendaApplication, mainViewModel: MainViewModel = viewModel(factory = MainViewModel.Factory(app))) {
     val navController = rememberNavController()
     val loginViewModel: LoginViewModel = viewModel()
-    val mainViewModel: MainViewModel = viewModel(factory = MainViewModel.Factory(app))
     NavHost(navController = navController, startDestination = "sso_login") {
         composable("sso_login") {
             SSOLoginScreen(

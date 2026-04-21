@@ -36,7 +36,11 @@ class MainViewModel(
     private val gson = Gson()
     private val featureRepository = CampusFeatureRepository(app)
     private val rutaManualRepository = RutaPredefinidaRepository(app)
+    private val settingsRepository = com.sendaurjc.data.repository.SettingsRepository(app)
     private val syncManager = MapDataSyncManager(OverpassService())
+
+    private val _isDarkMode = MutableStateFlow(settingsRepository.isDarkMode())
+    val isDarkMode: StateFlow<Boolean> = _isDarkMode.asStateFlow()
 
     private val _origin = MutableStateFlow(GeoPoint(40.334583, -3.876450))
     val origin: StateFlow<GeoPoint> = _origin.asStateFlow()
@@ -209,6 +213,11 @@ class MainViewModel(
         viewModelScope.launch {
             dao.update(incident.copy(type = newType, description = newDescription))
         }
+    }
+
+    fun toggleDarkMode(enabled: Boolean) {
+        settingsRepository.setDarkMode(enabled)
+        _isDarkMode.value = enabled
     }
 
     private fun segmentAndClassify(route: List<GeoPoint>) {

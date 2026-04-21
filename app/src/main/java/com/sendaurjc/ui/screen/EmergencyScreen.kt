@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,6 +39,7 @@ import androidx.compose.material3.OutlinedTextField
 import android.util.Patterns
 import java.util.UUID
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,21 +55,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.compose.runtime.LaunchedEffect
-import com.sendaurjc.data.repository.EmergencyContact
+import androidx.compose.material3.Switch
+import androidx.compose.material3.HorizontalDivider
+import com.sendaurjc.ui.viewmodel.MainViewModel
 import com.sendaurjc.data.repository.EmergencyContactRepository
+import com.sendaurjc.data.repository.EmergencyContact
 import com.sendaurjc.service.AlertForegroundService
 import kotlinx.coroutines.launch
 
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageIncidentsClick: () -> Unit) {
+fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageIncidentsClick: () -> Unit, viewModel: MainViewModel) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repository = remember { EmergencyContactRepository(context) }
     var emergencyContacts by remember { mutableStateOf<List<EmergencyContact>>(emptyList()) }
     var showAddContactDialog by remember { mutableStateOf(false) }
     var contactToEdit by remember { mutableStateOf<EmergencyContact?>(null) }
+    val isDarkMode by viewModel.isDarkMode.collectAsState()
 
     LaunchedEffect(Unit) {
         emergencyContacts = repository.getContacts()
@@ -201,6 +207,42 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                     .height(60.dp)
             ) {
                 Text("🛠️ Gestionar Incidencias", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Modo Oscuro
+            Text(
+                text = "Personalización",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Start
+            )
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Modo Oscuro",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Switch(
+                        checked = isDarkMode,
+                        onCheckedChange = { viewModel.toggleDarkMode(it) }
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(8.dp))

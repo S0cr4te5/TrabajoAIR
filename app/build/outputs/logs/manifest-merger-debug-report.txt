@@ -153,9 +153,9 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/BlackMouth/.gradle/ca
 	android:label
 		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:15:9-34
 	android:roundIcon
-		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:16:9-63
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:16:9-48
 	android:icon
-		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:14:9-58
+		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:14:9-43
 	android:allowBackup
 		ADDED from /home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:13:9-35
 	android:theme

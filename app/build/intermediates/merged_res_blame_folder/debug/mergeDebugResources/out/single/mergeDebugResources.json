@@ -1,18 +1,46 @@
 [
     {
-        "merged": "com.sendaurjc.app-debug-70:/xml_backup_rules.xml.flat",
-        "source": "com.sendaurjc.app-main-72:/xml/backup_rules.xml"
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/drawable_ic_location.xml.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/drawable/ic_location.xml"
     },
     {
-        "merged": "com.sendaurjc.app-debug-70:/drawable_ic_location.xml.flat",
-        "source": "com.sendaurjc.app-main-72:/drawable/ic_location.xml"
+        "merged": "com.sendaurjc.app-debug-70:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.sendaurjc.app-main-72:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.sendaurjc.app-debug-70:/drawable_ic_destination.xml.flat",
-        "source": "com.sendaurjc.app-main-72:/drawable/ic_destination.xml"
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/drawable_icon_senda_urjc.png.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/drawable/icon_senda_urjc.png"
     },
     {
-        "merged": "com.sendaurjc.app-debug-70:/xml_data_extraction_rules.xml.flat",
-        "source": "com.sendaurjc.app-main-72:/xml/data_extraction_rules.xml"
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/drawable_ic_senda_urjc.png.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/drawable/ic_senda_urjc.png"
+    },
+    {
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.sendaurjc.app-main-72:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.sendaurjc.app-main-72:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/xml_backup_rules.xml.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.sendaurjc.app-debug-70:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.sendaurjc.app-main-72:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-debug-70:/drawable_ic_destination.xml.flat",
+        "source": "/home/BlackMouth/.gradle/daemon/9.0.0/com.sendaurjc.app-main-72:/drawable/ic_destination.xml"
     }
 ]

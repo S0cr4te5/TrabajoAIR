@@ -82,12 +82,12 @@
 45-->[androidx.core:core:1.13.1] /home/BlackMouth/.gradle/caches/9.0.0/transforms/7de0410983b0ca75b2a885bfc49757ba/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 46        android:debuggable="true"
 47        android:extractNativeLibs="false"
-48        android:icon="@android:drawable/sym_def_app_icon"
-48-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:14:9-58
+48        android:icon="@mipmap/ic_launcher"
+48-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:14:9-43
 49        android:label="SendaURJC"
 49-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:15:9-34
-50        android:roundIcon="@android:drawable/sym_def_app_icon"
-50-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:16:9-63
+50        android:roundIcon="@mipmap/ic_launcher"
+50-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:16:9-48
 51        android:supportsRtl="true"
 51-->/home/BlackMouth/Documents/Code/Android/TrabajoAIR/app/src/main/AndroidManifest.xml:17:9-35
 52        android:testOnly="true"
