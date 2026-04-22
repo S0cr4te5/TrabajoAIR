@@ -20,10 +20,12 @@ import androidx.compose.ui.unit.dp
 import com.sendaurjc.ui.viewmodel.LoginViewModel
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: () -> Unit) {
+fun LoginScreen(viewModel: LoginViewModel, mainViewModel: com.sendaurjc.ui.viewmodel.MainViewModel, onLoginSuccess: () -> Unit) {
     val username by viewModel.username.collectAsState()
     val password by viewModel.password.collectAsState()
     val loading by viewModel.isLoading.collectAsState()
+    
+    fun t(key: String): String = mainViewModel.getTranslation(key)
 
     Column(
         modifier = Modifier
@@ -33,18 +35,18 @@ fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Mock SSO URJC")
+        Text(t("login_title"))
         OutlinedTextField(
             value = username,
             onValueChange = viewModel::setUsername,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Usuario") }
+            label = { Text(t("username")) }
         )
         OutlinedTextField(
             value = password,
             onValueChange = viewModel::setPassword,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Contraseña") },
+            label = { Text(t("password")) },
             visualTransformation = PasswordVisualTransformation()
         )
         Button(
@@ -53,7 +55,7 @@ fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: () -> Unit) {
             modifier = Modifier.padding(top = 12.dp)
         ) {
             if (loading) CircularProgressIndicator(modifier = Modifier.padding(4.dp))
-            Text("Acceder")
+            Text(t("access"))
         }
     }
 }

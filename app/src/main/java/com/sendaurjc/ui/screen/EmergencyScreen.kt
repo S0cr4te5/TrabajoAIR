@@ -66,7 +66,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageIncidentsClick: () -> Unit, viewModel: MainViewModel) {
+fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageIncidentsClick: () -> Unit, onNavigateToPreAlert: () -> Unit, onLogout: () -> Unit, viewModel: MainViewModel) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repository = remember { EmergencyContactRepository(context) }
@@ -74,6 +74,9 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
     var showAddContactDialog by remember { mutableStateOf(false) }
     var contactToEdit by remember { mutableStateOf<EmergencyContact?>(null) }
     val isDarkMode by viewModel.isDarkMode.collectAsState()
+    val isAlertModeActive by viewModel.isAlertModeActive.collectAsState()
+
+    fun t(key: String): String = viewModel.getTranslation(key)
 
     LaunchedEffect(Unit) {
         emergencyContacts = repository.getContacts()
@@ -94,7 +97,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Emergencia",
+                text = t("emergency_title"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
@@ -110,9 +113,8 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Botones de emergencia
             Text(
-                text = "Botones de Emergencia",
+                text = t("emergency_buttons"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -127,35 +129,59 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             ) {
                 Button(
                     onClick = {
-                        scope.launch {
-                            startAlertService(context)
-                            Toast.makeText(context, "🚨 Modo Alerta Activado", Toast.LENGTH_LONG).show()
+                        val selectedContact = emergencyContacts.find { it.isSelected }
+                        if (selectedContact == null) {
+                            Toast.makeText(context, t("select_contact_first"), Toast.LENGTH_LONG).show()
+                        } else {
+                            if (isAlertModeActive) {
+                                stopAlertService(context)
+                                viewModel.setAlertModeActive(false)
+                                Toast.makeText(context, t("alert_mode_deactivated"), Toast.LENGTH_SHORT).show()
+                            } else {
+                                scope.launch {
+                                    startAlertService(context)
+                                    viewModel.setAlertModeActive(true)
+                                    Toast.makeText(context, t("alert_mode_activated") + " ${selectedContact.name}", Toast.LENGTH_LONG).show()
+                                }
+                            }
                         }
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFD32F2F)
+                        containerColor = if (isAlertModeActive) Color(0xFF4CAF50) else Color(0xFFD32F2F),
+                        contentColor = Color.White
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
                 ) {
-                    Text("🚨 Activar Modo Alerta", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        if (isAlertModeActive) t("deactivate_alert_mode") else t("activate_alert_mode"),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
                 Button(
                     onClick = {
-                        scope.launch {
-                            startAlertService(context)
-                            Toast.makeText(context, "🚨 Modo Alerta Activado", Toast.LENGTH_LONG).show()
+                        val selectedContact = emergencyContacts.find { it.isSelected }
+                        if (selectedContact == null) {
+                            Toast.makeText(context, t("select_contact_first"), Toast.LENGTH_LONG).show()
+                        } else {
+                            if (isAlertModeActive) {
+                                onNavigateToPreAlert()
+                            } else {
+                                Toast.makeText(context, t("test_alert") + " - " + t("select_contact_first"), Toast.LENGTH_LONG).show()
+                            }
                         }
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFD32F2F)
+                        containerColor = Color(0xFFD32F2F),
+                        contentColor = Color.White
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
                 ) {
-                    Text("🚨 Prueba de Alerta", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(t("test_alert"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
                 }
             }
 
@@ -165,7 +191,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
 
             // Botón "Voy contigo"
             Text(
-                text = "Solicitar Acompañamiento",
+                text = t("request_companion"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -173,22 +199,23 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
             )
 
             Button(
-                onClick = { showCompanionDialog(context) },
+                onClick = { showCompanionDialog(context, ::t) },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1976D2)
+                    containerColor = Color(0xFF1976D2),
+                    contentColor = Color.White
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
             ) {
-                Text("🤝 Voy contigo - Solicitar voluntario", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                Text(t("voy_contigo"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
             // Gestionar Incidencias
             Text(
-                text = "Administración",
+                text = t("administration"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -200,20 +227,21 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                     onManageIncidentsClick()
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF455A64)
+                    containerColor = Color(0xFF455A64),
+                    contentColor = Color.White
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
             ) {
-                Text("🛠️ Gestionar Incidencias", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                Text(t("manage_incidents"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
             // Modo Oscuro
             Text(
-                text = "Personalización",
+                text = t("personalization"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -234,7 +262,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Modo Oscuro",
+                        text = t("dark_mode"),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -249,7 +277,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
 
             // Contactos de emergencia
             Text(
-                text = "Contactos de Emergencia",
+                text = t("emergency_contacts"),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth(),
@@ -288,7 +316,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                                     onDismissRequest = { showMenu = false }
                                 ) {
                                     DropdownMenuItem(
-                                        text = { Text("Editar") },
+                                        text = { Text(t("edit")) },
                                         onClick = {
                                             showMenu = false
                                             contactToEdit = contact
@@ -296,12 +324,12 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                                         }
                                     )
                                     DropdownMenuItem(
-                                        text = { Text("Borrar") },
+                                        text = { Text(t("delete")) },
                                         onClick = {
                                             showMenu = false
                                             repository.deleteContact(contact.id)
                                             emergencyContacts = repository.getContacts()
-                                            Toast.makeText(context, "Contacto eliminado", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, t("contact_deleted"), Toast.LENGTH_SHORT).show()
                                         }
                                     )
                                 }
@@ -320,19 +348,20 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                                 repository.updateContactSelection(contact.id, !isSelected)
                                 emergencyContacts = repository.getContacts()
                                 val message = if (isSelected) {
-                                    "Contacto de emergencia eliminado"
+                                    t("contact_removed")
                                 } else {
-                                    "${contact.name} establecido como contacto de emergencia"
+                                    "${contact.name} ${t("contact_set_as_emergency")}"
                                 }
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                             },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (isSelected) Color(0xFF4CAF50) else MaterialTheme.colorScheme.primary
+                                containerColor = if (isSelected) Color(0xFF4CAF50) else MaterialTheme.colorScheme.primary,
+                                contentColor = if (isSelected) Color.White else MaterialTheme.colorScheme.onPrimary
                             ),
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(
-                                text = if (isSelected) "Contacto de emergencia" else "Seleccionar como contacto de emergencia"
+                                text = if (isSelected) t("emergency_contact_label") else t("select_emergency_contact")
                             )
                         }
                     }
@@ -344,13 +373,14 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                     showAddContactDialog = true
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1FA240)
+                    containerColor = Color(0xFF1FA240),
+                    contentColor = Color.White
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
             ) {
-                Text("➕ Añadir Contacto de Emergencia", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                Text(t("add_contact"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
             }
 
             if (showAddContactDialog) {
@@ -363,13 +393,13 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                         showAddContactDialog = false
                         contactToEdit = null
                     },
-                    title = { Text(if (contactToEdit == null) "Nuevo Contacto de Emergencia" else "Editar Contacto") },
+                    title = { Text(if (contactToEdit == null) t("new_contact_title") else t("edit_contact_title")) },
                     text = {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             OutlinedTextField(
                                 value = newName,
                                 onValueChange = { newName = it },
-                                label = { Text("Nombre") },
+                                label = { Text(t("name")) },
                                 modifier = Modifier.fillMaxWidth()
                             )
                             OutlinedTextField(
@@ -378,11 +408,11 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                                     newEmail = it
                                     emailError = !Patterns.EMAIL_ADDRESS.matcher(it).matches()
                                 },
-                                label = { Text("Email") },
+                                label = { Text(t("email")) },
                                 isError = emailError,
                                 supportingText = {
                                     if (emailError) {
-                                        Text("Email no válido", color = MaterialTheme.colorScheme.error)
+                                        Text(t("invalid_email"), color = MaterialTheme.colorScheme.error)
                                     }
                                 },
                                 modifier = Modifier.fillMaxWidth()
@@ -404,11 +434,11 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                                     showAddContactDialog = false
                                     contactToEdit = null
                                 } else {
-                                    Toast.makeText(context, "Por favor, rellena los campos correctamente", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, t("please_fill_correctly"), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         ) {
-                            Text("Guardar")
+                            Text(t("save"))
                         }
                     },
                     dismissButton = {
@@ -416,7 +446,7 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
                             showAddContactDialog = false
                             contactToEdit = null
                         }) {
-                            Text("Cancelar")
+                            Text(t("cancel"))
                         }
                     }
                 )
@@ -424,19 +454,23 @@ fun EmergencyScreen(onClose: () -> Unit, onReportClick: () -> Unit, onManageInci
 
 
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
-            Text(
-                text = "En caso de peligro inmediato, llama siempre al 112",
-                style = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Center,
-                color = Color.Red,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.fillMaxWidth()
-            )
+            Button(
+                onClick = onLogout,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.errorContainer,
+                    contentColor = MaterialTheme.colorScheme.onErrorContainer
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                Text(t("logout"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            }
 
+            Spacer(modifier = Modifier.height(32.dp))
         }
-
     }
 }
 
@@ -445,17 +479,22 @@ private fun startAlertService(context: Context) {
     ContextCompat.startForegroundService(context, intent)
 }
 
+private fun stopAlertService(context: Context) {
+    val intent = Intent(context, AlertForegroundService::class.java)
+    context.stopService(intent)
+}
 
 
-private fun showCompanionDialog(context: Context) {
+
+private fun showCompanionDialog(context: Context, t: (String) -> String) {
     val dialog = android.app.AlertDialog.Builder(context)
-        .setTitle("Buscando voluntarios URJC...")
+        .setTitle(t("searching_volunteers"))
         .setView(android.widget.ProgressBar(context))
         .setCancelable(false)
         .create()
     dialog.show()
     Handler(Looper.getMainLooper()).postDelayed({
         dialog.dismiss()
-        Toast.makeText(context, "✅ Voluntario asignado (Simulación). Buen camino.", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, t("volunteer_assigned"), Toast.LENGTH_LONG).show()
     }, 3000)
 }

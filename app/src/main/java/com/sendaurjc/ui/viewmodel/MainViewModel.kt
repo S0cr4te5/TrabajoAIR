@@ -17,6 +17,7 @@ import com.sendaurjc.data.sync.MapDataSyncManager
 import com.sendaurjc.domain.RouteRepository
 import com.sendaurjc.util.GeoUtils
 import kotlinx.coroutines.Dispatchers
+import com.sendaurjc.data.repository.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -36,11 +37,16 @@ class MainViewModel(
     private val gson = Gson()
     private val featureRepository = CampusFeatureRepository(app)
     private val rutaManualRepository = RutaPredefinidaRepository(app)
-    private val settingsRepository = com.sendaurjc.data.repository.SettingsRepository(app)
+    private val settingsRepository = SettingsRepository(app)
     private val syncManager = MapDataSyncManager(OverpassService())
 
     private val _isDarkMode = MutableStateFlow(settingsRepository.isDarkMode())
     val isDarkMode: StateFlow<Boolean> = _isDarkMode.asStateFlow()
+
+    private val _isAlertModeActive = MutableStateFlow(false)
+    val isAlertModeActive: StateFlow<Boolean> = _isAlertModeActive.asStateFlow()
+
+    private val _translations = MutableStateFlow<Map<String, String>>(emptyMap())
 
     private val _origin = MutableStateFlow(GeoPoint(40.334583, -3.876450))
     val origin: StateFlow<GeoPoint> = _origin.asStateFlow()
@@ -89,7 +95,27 @@ class MainViewModel(
     init {
         loadSitios()
         syncAndLoadFeatures()
+        loadTranslations()
         _destinosConRuta.value = rutaManualRepository.getDestinosConRuta()
+    }
+
+    private fun loadTranslations() {
+        viewModelScope.launch {
+            val translations = withContext(Dispatchers.IO) {
+                try {
+                    val json = app.assets.open("languages.json").bufferedReader().use { it.readText() }
+                    val type = object : TypeToken<Map<String, String>>() {}.type
+                    gson.fromJson<Map<String, String>>(json, type) ?: emptyMap()
+                } catch (e: Exception) {
+                    emptyMap()
+                }
+            }
+            _translations.value = translations
+        }
+    }
+
+    fun getTranslation(key: String): String {
+        return _translations.value[key] ?: key
     }
 
     private fun syncAndLoadFeatures() {
@@ -218,6 +244,10 @@ class MainViewModel(
     fun toggleDarkMode(enabled: Boolean) {
         settingsRepository.setDarkMode(enabled)
         _isDarkMode.value = enabled
+    }
+
+    fun setAlertModeActive(active: Boolean) {
+        _isAlertModeActive.value = active
     }
 
     private fun segmentAndClassify(route: List<GeoPoint>) {

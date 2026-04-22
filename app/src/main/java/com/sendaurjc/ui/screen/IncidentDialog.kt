@@ -28,10 +28,14 @@ fun IncidentDialog(
     initialType: String = "",
     initialDescription: String = "",
     onDismiss: () -> Unit,
-    onReport: (String, String) -> Unit
+    onReport: (String, String) -> Unit,
+    viewModel: com.sendaurjc.ui.viewmodel.MainViewModel? = null
 ) {
     val context = LocalContext.current
-    var options by remember { mutableStateOf(listOf("Cargando...")) }
+    
+    fun t(key: String): String = viewModel?.getTranslation(key) ?: key
+
+    var options by remember { mutableStateOf(listOf(t("loading"))) }
     var expanded by remember { mutableStateOf(false) }
     var selectedType by remember { mutableStateOf(initialType) }
     var description by remember { mutableStateOf(initialDescription) }
@@ -52,16 +56,16 @@ fun IncidentDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initialType.isEmpty()) "Reportar incidencia" else "Editar incidencia") },
+        title = { Text(if (initialType.isEmpty()) t("report_incident") else t("edit_incident")) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                if (options.isNotEmpty() && options.first() != "Cargando...") {
+                if (options.isNotEmpty() && options.first() != t("loading")) {
                     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
                         OutlinedTextField(
                             value = selectedType,
                             onValueChange = {},
                             readOnly = true,
-                            label = { Text("Tipo") },
+                            label = { Text(t("type")) },
                             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                             modifier = Modifier
                                 .menuAnchor()
@@ -77,13 +81,13 @@ fun IncidentDialog(
                         }
                     }
                 } else {
-                    Text("Cargando tipos de incidencia...")
+                    Text(t("loading_incident_types"))
                 }
 
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = { Text("Descripción") },
+                    label = { Text(t("description")) },
                     modifier = Modifier.fillMaxWidth(),
                     minLines = 3
                 )
@@ -93,12 +97,12 @@ fun IncidentDialog(
             Button(
                 onClick = { onReport(selectedType, description) },
                 enabled = selectedType.isNotEmpty() && 
-                         selectedType != "Cargando..." && 
+                         selectedType != t("loading") && 
                          description.isNotBlank()
             ) {
-                Text("Guardar")
+                Text(t("save"))
             }
         },
-        dismissButton = { Button(onClick = onDismiss) { Text("Cancelar") } }
+        dismissButton = { Button(onClick = onDismiss) { Text(t("cancel")) } }
     )
 }

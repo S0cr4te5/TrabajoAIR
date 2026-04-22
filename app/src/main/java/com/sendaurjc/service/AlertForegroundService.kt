@@ -29,7 +29,7 @@ class AlertForegroundService : Service(), LocationListener {
     override fun onCreate() {
         super.onCreate()
         createChannel()
-        startForeground(11, baseNotification("Monitorizando ruta segura"))
+        startForeground(11, baseNotification("Tu ubicación está siendo compartida"))
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         try {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000L, 0f, this)
@@ -40,12 +40,18 @@ class AlertForegroundService : Service(), LocationListener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
+            ACTION_START_PREALERT -> {
+                showPreAlertNotification()
+                return START_STICKY
+            }
             ACTION_OK -> {
                 (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancel(PREALERT_ID)
+                sendBroadcast(Intent(ACTION_PREALERT_DEACTIVATED))
                 return START_STICKY
             }
             ACTION_EMERGENCY -> {
                 val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                manager.cancel(PREALERT_ID)
                 manager.notify(FINAL_ID,
                     NotificationCompat.Builder(this, CHANNEL_ID)
                         .setSmallIcon(android.R.drawable.ic_dialog_alert)
@@ -80,6 +86,22 @@ class AlertForegroundService : Service(), LocationListener {
     }
 
     private fun launchPreAlert() {
+        showPreAlertNotification()
+
+        handler.postDelayed({
+            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.notify(FINAL_ID,
+                NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                    .setContentTitle("[SIMULACIÓN] Alerta enviada")
+                    .setContentText("Seguridad y Contacto URJC han sido notificados")
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .build()
+            )
+        }, 30000) // Cambiado a 30s para coincidir con PreAlertScreen
+    }
+
+    private fun showPreAlertNotification() {
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val openIntent = PendingIntent.getActivity(
             this, 1,
@@ -101,29 +123,18 @@ class AlertForegroundService : Service(), LocationListener {
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
-            .setContentTitle("¿SendaURJC: Todo bien?")
-            .setContentText("Sin movimiento detectado")
+            .setContentTitle("Prealerta activada")
+            .setContentText("Pulsa para desactivar si es una falsa alarma")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setAutoCancel(true)
             .setSound(android.provider.Settings.System.DEFAULT_NOTIFICATION_URI)
             .setContentIntent(openIntent)
-            .addAction(0, "Estoy bien", okIntent)
+            .addAction(0, "Desactivar", okIntent)
             .addAction(0, "Emergencia", emergencyIntent)
             .build()
 
         manager.notify(PREALERT_ID, notification)
-
-        handler.postDelayed({
-            manager.notify(FINAL_ID,
-                NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                    .setContentTitle("[SIMULACIÓN] Alerta enviada")
-                    .setContentText("Seguridad y Contacto URJC han sido notificados")
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .build()
-            )
-        }, 10_000)
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
@@ -158,5 +169,7 @@ class AlertForegroundService : Service(), LocationListener {
         private const val FINAL_ID = 1002
         const val ACTION_OK = "action_ok"
         const val ACTION_EMERGENCY = "action_emergency"
+        const val ACTION_START_PREALERT = "action_start_prealert"
+        const val ACTION_PREALERT_DEACTIVATED = "com.sendaurjc.PREALERT_DEACTIVATED"
     }
 }

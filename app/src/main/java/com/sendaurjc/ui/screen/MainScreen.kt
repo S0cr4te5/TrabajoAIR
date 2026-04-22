@@ -43,7 +43,7 @@ import org.osmdroid.views.overlay.*
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
+fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit, onNavigateToPreAlert: () -> Unit, onLogout: () -> Unit) {
 
     val routeOptions by viewModel.routeOptions.collectAsState()
     val selectedRoute by viewModel.selectedRoute.collectAsState()
@@ -87,6 +87,8 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
     }
 
     val isDarkMode by viewModel.isDarkMode.collectAsState()
+    
+    fun t(key: String): String = viewModel.getTranslation(key)
 
     if (emergencyScreenOpen) {
         EmergencyScreen(
@@ -96,6 +98,11 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                 emergencyScreenOpen = false
                 onManageIncidents()
             },
+            onNavigateToPreAlert = {
+                emergencyScreenOpen = false
+                onNavigateToPreAlert()
+            },
+            onLogout = onLogout,
             viewModel = viewModel
         )
     } else {
@@ -139,7 +146,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                         contentColor = Color.White,
                         modifier = Modifier.padding(bottom = 16.dp)
                     ) {
-                        Icon(Icons.Filled.Flag, contentDescription = "Incidencia")
+                        Icon(Icons.Filled.Flag, contentDescription = t("incident_description"))
                     }
                     FloatingActionButton(
                         onClick = {
@@ -151,7 +158,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                         contentColor = Color.White,
                         modifier = Modifier.padding(bottom = 16.dp)
                     ) {
-                        Icon(Icons.Filled.LocationOn, contentDescription = "Mi ubicación")
+                        Icon(Icons.Filled.LocationOn, contentDescription = t("my_location"))
                     }
 
 
@@ -177,7 +184,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                 if (selectedRoute == null) viewModel.clearRoutes()
                             }
                         },
-                        placeholder = { Text("Buscar destino...") },
+                        placeholder = { Text(t("search_destination")) },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -188,12 +195,12 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                 ListItem(
                                     headlineContent = {
                                         Text(
-                                            "No existen rutas o no son seguras",
-                                            color = Color.Red,
+                                            t("no_safe_routes"),
+                                            color = MaterialTheme.colorScheme.error,
                                             style = MaterialTheme.typography.bodyMedium
                                         )
                                     },
-                                    leadingContent = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color.Red) }
+                                    leadingContent = { Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error) }
                                 )
                             }
 
@@ -260,7 +267,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    if (destinationWithoutRoute) "Información" else "Rutas disponibles",
+                                    if (destinationWithoutRoute) t("information") else t("available_routes"),
                                     style = MaterialTheme.typography.titleLarge
                                 )
                                 IconButton(onClick = {
@@ -270,7 +277,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                         viewModel.clearRoutes()
                                     }
                                 }) {
-                                    Icon(Icons.Default.Close, contentDescription = "Cerrar")
+                                    Icon(Icons.Default.Close, contentDescription = t("cancel"))
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
@@ -286,13 +293,13 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                     Icon(
                                         Icons.Default.Warning,
                                         contentDescription = null,
-                                        tint = Color.Red,
+                                        tint = MaterialTheme.colorScheme.error,
                                         modifier = Modifier.size(24.dp)
                                     )
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
-                                        "No existen rutas o no son seguras",
-                                        color = Color.Red,
+                                        t("no_safe_routes"),
+                                        color = MaterialTheme.colorScheme.error,
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                 }
@@ -327,7 +334,7 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                                             else -> Color(0xFFF44336)
                                         }
                                         Text(
-                                            text = "Seguridad: ${option.safetyIndex}",
+                                            text = "${t("safety")}: ${option.safetyIndex}",
                                             style = MaterialTheme.typography.bodyMedium,
                                             color = safetyColor
                                         )
@@ -346,10 +353,11 @@ fun MainScreen(viewModel: MainViewModel, onManageIncidents: () -> Unit) {
                 onReport = { type, description ->
                     viewModel.reportIncident(type, description, origin)
                     scope.launch {
-                        snackbarHostState.showSnackbar("Incidencia guardada")
+                        snackbarHostState.showSnackbar(t("incident_saved"))
                     }
                     reportDialogOpen = false
-                }
+                },
+                viewModel = viewModel
             )
         }
     }

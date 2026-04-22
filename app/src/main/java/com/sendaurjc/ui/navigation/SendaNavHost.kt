@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.sendaurjc.SendaApplication
+import com.sendaurjc.ui.screen.PreAlertScreen
 import com.sendaurjc.ui.screen.IncidentManagementScreen
 import com.sendaurjc.ui.screen.LoginScreen
 import com.sendaurjc.ui.screen.MainScreen
@@ -31,14 +32,30 @@ fun SendaNavHost(app: SendaApplication, mainViewModel: MainViewModel = viewModel
             )
         }
         composable("traditional_login") {
-            LoginScreen(loginViewModel) {
+            LoginScreen(loginViewModel, mainViewModel) {
                 navController.navigate("main") {
                     popUpTo("traditional_login") { inclusive = true }
                 }
             }
         }
         composable("main") {
-            MainScreen(mainViewModel, onManageIncidents = { navController.navigate("manage_incidents") })
+            MainScreen(
+                mainViewModel,
+                onManageIncidents = { navController.navigate("manage_incidents") },
+                onNavigateToPreAlert = { navController.navigate("pre_alert") },
+                onLogout = {
+                    navController.navigate("sso_login") {
+                        popUpTo(0) { inclusive = true }
+                    }
+                }
+            )
+        }
+        composable("pre_alert") {
+            PreAlertScreen(mainViewModel, onDeactivate = { 
+                navController.navigate("main") {
+                    popUpTo("main") { inclusive = true }
+                }
+            })
         }
         composable("manage_incidents") {
             IncidentManagementScreen(mainViewModel, onBack = { navController.popBackStack() })

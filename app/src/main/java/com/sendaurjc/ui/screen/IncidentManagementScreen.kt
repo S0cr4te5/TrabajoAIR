@@ -43,14 +43,16 @@ import java.util.Locale
 fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
     val incidents by viewModel.incidents.collectAsState()
     var editingIncident by remember { mutableStateOf<IncidentEntity?>(null) }
+    
+    fun t(key: String): String = viewModel.getTranslation(key)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Gestionar Incidencias") },
+                title = { Text(t("manage_incidents")) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
+                        Icon(Icons.Default.ArrowBack, contentDescription = t("back"))
                     }
                 }
             )
@@ -67,7 +69,8 @@ fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
                 IncidentItem(
                     incident = incident,
                     onDelete = { viewModel.deleteIncident(incident) },
-                    onEdit = { editingIncident = incident }
+                    onEdit = { editingIncident = incident },
+                    t = ::t
                 )
             }
         }
@@ -83,7 +86,8 @@ fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
                     viewModel.updateIncident(it, newType, newDescription)
                 }
                 editingIncident = null
-            }
+            },
+            viewModel = viewModel
         )
     }
 }
@@ -92,7 +96,8 @@ fun IncidentManagementScreen(viewModel: MainViewModel, onBack: () -> Unit) {
 fun IncidentItem(
     incident: IncidentEntity,
     onDelete: () -> Unit,
-    onEdit: () -> Unit
+    onEdit: () -> Unit,
+    t: (String) -> String
 ) {
     Card(
         modifier = Modifier.fillMaxWidth()
@@ -111,7 +116,7 @@ fun IncidentItem(
                 val date = Date(incident.timestamp)
                 val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 Text(
-                    text = "Creado: ${format.format(date)}",
+                    text = "${t("created")}: ${format.format(date)}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.secondary
                 )
@@ -122,10 +127,10 @@ fun IncidentItem(
             }
             Row {
                 IconButton(onClick = onEdit) {
-                    Icon(Icons.Default.Edit, contentDescription = "Editar")
+                    Icon(Icons.Default.Edit, contentDescription = t("edit"))
                 }
                 IconButton(onClick = onDelete) {
-                    Icon(Icons.Default.Delete, contentDescription = "Borrar")
+                    Icon(Icons.Default.Delete, contentDescription = t("delete"))
                 }
             }
         }
