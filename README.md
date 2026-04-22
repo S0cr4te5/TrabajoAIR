@@ -2,6 +2,11 @@
 
 **SendaURJC** es un prototipo funcional de aplicación Android diseñado para mejorar la seguridad percibida de la comunidad universitaria en el Campus de Móstoles de la URJC. La aplicación combina geolocalización, cálculo de rutas seguras y herramientas de reporte ciudadano para ofrecer un entorno más protegido.
 
+## 📝 Descripción del Software
+Prototipo completo con ubicación simulada, rutas, creación de incidencias editables, modo oscuro, contactos de emergencia, modo alerta simulado con alerta de prueba, modo de acompañamiento simulado, SSO simulado y datos de LumenSmart simulados. 
+
+Los círculos rojos que se observan en el mapa simbolizan zonas inseguras que evitan las rutas y en el producto final solo será visible para los administradores.
+
 ---
 
 ## 🚀 Funcionalidades Principales
@@ -59,11 +64,20 @@ com.sendaurjc
 
 ## ⚙️ Instalación y Configuración
 
-1. **Requisitos:** Android Studio Hedgehog (o superior) y JDK 17.
-2. **Clonar y Sincronizar:** Importa el proyecto y realiza un *Gradle Sync*.
-3. **Permisos:** La aplicación solicitará permisos de Ubicación Fina y Notificaciones al inicio.
+Existen 2 opciones para instalar la aplicación:
 
-### 📍 Simulación de Ubicación (Testing)
+1. **Compilar desde el código fuente:**
+   - **Requisitos:** Android Studio Hedgehog (o superior) y JDK 17.
+   - **Clonar y Sincronizar:** Importa el proyecto y realiza un *Gradle Sync*.
+   - **Ejecutar:** Conecta un dispositivo o inicia un emulador y pulsa "Run".
+
+2. **Descargar el último release e instalarlo en un dispositivo Android:**
+   - Ve a la sección de **Releases** de este repositorio.
+   - Descarga el último archivo APK disponible e instálalo en tu dispositivo.
+
+---
+
+## 📍 Simulación de Ubicación (Testing)
 Para probar la aplicación en el Campus de Móstoles (donde están cargados los datos de prueba):
 - **Latitud:** `40.335`
 - **Longitud:** `-3.875`
@@ -80,7 +94,7 @@ Para disparar la **Pre-alerta**, activa el Modo Alerta y permanece estático en 
 
 ---
 
-## 📦 Generación de APK
+## 📦 Generación de APK (Manual)
 Puedes generar el APK de depuración ejecutando:
 ```bash
 ./gradlew assembleDebug
